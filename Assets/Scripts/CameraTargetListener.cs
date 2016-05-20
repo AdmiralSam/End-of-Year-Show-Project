@@ -1,11 +1,12 @@
 ﻿using System;
 using UnityEngine;
+using Vuforia;
 using UnityEngine.UI;
 
 public class CameraTargetListener : MonoBehaviour, ITargetListener
 {
-    private int messageCount;
     public Text test;
+    private int messageCount;
 
     public void TargetEnteredView(string target)
     {
@@ -17,9 +18,9 @@ public class CameraTargetListener : MonoBehaviour, ITargetListener
         test.text = string.Format("{0}: {1} has left", messageCount++, target);
     }
 
-    public void TargetMoved(string target, Vector3 cameraPosition)
+    public void TargetMoved(string target, Vector3 location)
     {
-        throw new NotImplementedException();
+        test.text = string.Format("{0}: {1} is at {2}", messageCount, target, location);
     }
 
     private void Start()

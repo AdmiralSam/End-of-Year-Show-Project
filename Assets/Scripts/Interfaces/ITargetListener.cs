@@ -6,5 +6,5 @@ public interface ITargetListener
 
     void TargetLeftView(string target);
 
-    void TargetMoved(string target, Vector3 cameraPosition);
+    void TargetMoved(string target, Vector3 location);
 }
