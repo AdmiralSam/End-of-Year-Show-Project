@@ -13,10 +13,9 @@ namespace Vuforia
     /// </summary>
     public class TurnOffWordBehaviour : MonoBehaviour
     {
-
         #region UNITY_MONOBEHAVIOUR_METHODS
 
-        void Awake()
+        private void Awake()
         {
             if (VuforiaRuntimeUtilities.IsVuforiaEnabled())
             {
@@ -27,12 +26,11 @@ namespace Vuforia
                 Destroy(targetMeshRenderer);
                 //The child object for visualizing text is removed at runtime
                 var text = transform.FindChild("Text");
-                if(text != null)
+                if (text != null)
                     Destroy(text.gameObject);
             }
         }
 
-        #endregion // UNITY_MONOBEHAVIOUR_METHODS
-
+        #endregion UNITY_MONOBEHAVIOUR_METHODS
     }
 }

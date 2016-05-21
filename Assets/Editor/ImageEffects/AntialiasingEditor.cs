@@ -1,10 +1,9 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
 namespace UnityStandardAssets.ImageEffects
 {
-    [CustomEditor(typeof (Antialiasing))]
+    [CustomEditor(typeof(Antialiasing))]
     public class AntialiasingEditor : Editor
     {
         private SerializedObject serObj;
@@ -19,7 +18,6 @@ namespace UnityStandardAssets.ImageEffects
         private SerializedProperty edgeThresholdMin;
         private SerializedProperty edgeThreshold;
         private SerializedProperty edgeSharpness;
-
 
         private void OnEnable()
         {
@@ -37,7 +35,6 @@ namespace UnityStandardAssets.ImageEffects
             edgeSharpness = serObj.FindProperty("edgeSharpness");
         }
 
-
         public override void OnInspectorGUI()
         {
             serObj.Update();
@@ -52,17 +49,17 @@ namespace UnityStandardAssets.ImageEffects
                 EditorGUILayout.HelpBox("This AA technique is currently not supported. Choose a different technique or disable the effect and use MSAA instead.", MessageType.Warning);
             }
 
-            if (mode.enumValueIndex == (int) AAMode.NFAA)
+            if (mode.enumValueIndex == (int)AAMode.NFAA)
             {
                 EditorGUILayout.PropertyField(offsetScale, new GUIContent("Edge Detect Ofs"));
                 EditorGUILayout.PropertyField(blurRadius, new GUIContent("Blur Radius"));
                 EditorGUILayout.PropertyField(showGeneratedNormals, new GUIContent("Show Normals"));
             }
-            else if (mode.enumValueIndex == (int) AAMode.DLAA)
+            else if (mode.enumValueIndex == (int)AAMode.DLAA)
             {
                 EditorGUILayout.PropertyField(dlaaSharp, new GUIContent("Sharp"));
             }
-            else if (mode.enumValueIndex == (int) AAMode.FXAA3Console)
+            else if (mode.enumValueIndex == (int)AAMode.FXAA3Console)
             {
                 EditorGUILayout.PropertyField(edgeThresholdMin, new GUIContent("Edge Min Threshhold"));
                 EditorGUILayout.PropertyField(edgeThreshold, new GUIContent("Edge Threshhold"));

@@ -20,7 +20,7 @@ namespace Vuforia
         /// <summary>
         /// call all member methods that have the FactoryStart attribute
         /// </summary>
-        void Awake()
+        private void Awake()
         {
             List<MethodInfo> methods = this.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).ToList();
             methods.AddRange(this.GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly));
@@ -42,7 +42,7 @@ namespace Vuforia
         }
 
         [FactorySetter]
-        void SetBehaviourComponentFactory()
+        private void SetBehaviourComponentFactory()
         {
             Debug.Log("Setting BehaviourComponentFactory");
             BehaviourComponentFactory.Instance = new VuforiaBehaviourComponentFactory();

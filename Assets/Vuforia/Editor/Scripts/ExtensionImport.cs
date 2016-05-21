@@ -1,16 +1,16 @@
 /*==============================================================================
 Copyright (c) 2015-2016 PTC Inc. All Rights Reserved.
- 
+
 Copyright (c) 2015 Qualcomm Connected Experiences, Inc.
 All Rights Reserved.
 Confidential and Proprietary - Protected under copyright and other laws.
 
-Vuforia is a trademark of PTC Inc., registered in the United States and other 
-countries.  
+Vuforia is a trademark of PTC Inc., registered in the United States and other
+countries.
 ==============================================================================*/
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace Vuforia.EditorClasses
 {
@@ -19,14 +19,14 @@ namespace Vuforia.EditorClasses
     {
         private static readonly string VUFORIA_ANDROID_SETTINGS = "VUFORIA_ANDROID_SETTINGS";
         private static readonly string VUFORIA_IOS_SETTINGS = "VUFORIA_IOS_SETTINGS";
-        
-        static ExtensionImport() 
+
+        static ExtensionImport()
         {
             EditorApplication.update += UpdatePluginSettings;
             EditorApplication.update += UpdatePlayerSettings;
         }
 
-        static void UpdatePluginSettings()
+        private static void UpdatePluginSettings()
         {
             // Unregister callback (executed only once)
             EditorApplication.update -= UpdatePluginSettings;
@@ -35,7 +35,7 @@ namespace Vuforia.EditorClasses
             foreach (var imp in importers)
             {
                 string pluginPath = imp.assetPath;
-                bool isVuforiaWrapperPlugin = 
+                bool isVuforiaWrapperPlugin =
                     pluginPath.EndsWith("QCARWrapper.dll") || pluginPath.EndsWith("VuforiaWrapper.dll") ||
                     pluginPath.EndsWith("QCARWrapper.bundle") || pluginPath.EndsWith("VuforiaWrapper.bundle");
                 if (isVuforiaWrapperPlugin && imp.GetCompatibleWithAnyPlatform())
@@ -46,8 +46,8 @@ namespace Vuforia.EditorClasses
                 }
             }
         }
-        
-        static void UpdatePlayerSettings()
+
+        private static void UpdatePlayerSettings()
         {
             // Unregister callback (executed only once)
             EditorApplication.update -= UpdatePlayerSettings;
@@ -57,7 +57,7 @@ namespace Vuforia.EditorClasses
 
             string androidSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(androidBuildTarget);
             androidSymbols = androidSymbols ?? "";
-            if (!androidSymbols.Contains(VUFORIA_ANDROID_SETTINGS)) 
+            if (!androidSymbols.Contains(VUFORIA_ANDROID_SETTINGS))
             {
                 if (PlayerSettings.Android.targetDevice != AndroidTargetDevice.ARMv7)
                 {
@@ -77,7 +77,7 @@ namespace Vuforia.EditorClasses
                 Debug.Log("Setting Android Graphics API to OpenGL ES 2.0.");
                 PlayerSettings.SetGraphicsAPIs(
                     BuildTarget.Android,
-                    new UnityEngine.Rendering.GraphicsDeviceType[]{UnityEngine.Rendering.GraphicsDeviceType.OpenGLES2});
+                    new UnityEngine.Rendering.GraphicsDeviceType[] { UnityEngine.Rendering.GraphicsDeviceType.OpenGLES2 });
 #endif
                 // Here we set the scripting define symbols for Android
                 // so we can remember that the settings were set once.
@@ -107,7 +107,7 @@ namespace Vuforia.EditorClasses
 
                 // Here we set the scripting define symbols for IOS
                 // so we can remember that the settings were set once.
-                PlayerSettings.SetScriptingDefineSymbolsForGroup(iOSBuildTarget, 
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(iOSBuildTarget,
                                                                  iOSSymbols + ";" + VUFORIA_IOS_SETTINGS);
             }
         }

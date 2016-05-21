@@ -4,14 +4,13 @@ All Rights Reserved.
 Confidential and Proprietary - Protected under copyright and other laws.
 ==============================================================================*/
 
-
 using UnityEngine;
 
 namespace Vuforia
 {
     /// <summary>
     /// A default event handler that handles reconstruction events for a ReconstructionFromTarget
-    /// It uses a single Prop template that is used for every newly created prop, 
+    /// It uses a single Prop template that is used for every newly created prop,
     /// and a surface template that is used for the primary surface
     /// </summary>
     public class DefaultSmartTerrainEventHandler : MonoBehaviour
@@ -20,21 +19,18 @@ namespace Vuforia
 
         private ReconstructionBehaviour mReconstructionBehaviour;
 
-        #endregion // PRIVATE_MEMBERS
-
+        #endregion PRIVATE_MEMBERS
 
         #region PUBLIC_MEMBERS
 
         public PropBehaviour PropTemplate;
         public SurfaceBehaviour SurfaceTemplate;
 
-        #endregion // PUBLIC_MEMBERS
-
-
+        #endregion PUBLIC_MEMBERS
 
         #region UNTIY_MONOBEHAVIOUR_METHODS
 
-        void Start()
+        private void Start()
         {
             mReconstructionBehaviour = GetComponent<ReconstructionBehaviour>();
             if (mReconstructionBehaviour)
@@ -44,7 +40,7 @@ namespace Vuforia
             }
         }
 
-        void OnDestroy()
+        private void OnDestroy()
         {
             if (mReconstructionBehaviour)
             {
@@ -53,9 +49,7 @@ namespace Vuforia
             }
         }
 
-        #endregion // UNTIY_MONOBEHAVIOUR_METHODS
-
-
+        #endregion UNTIY_MONOBEHAVIOUR_METHODS
 
         #region RECONSTRUCTION_CALLBACKS
 
@@ -77,9 +71,6 @@ namespace Vuforia
                 mReconstructionBehaviour.AssociateSurface(SurfaceTemplate, surface);
         }
 
-        #endregion // RECONSTRUCTION_CALLBACKS
+        #endregion RECONSTRUCTION_CALLBACKS
     }
 }
-
-
-

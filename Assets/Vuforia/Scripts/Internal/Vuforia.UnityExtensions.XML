@@ -73,14 +73,13 @@
         <member name="M:Vuforia.DigitalEyewearAbstractBehaviour.SetViewerActive(System.Boolean,System.Boolean)">
             <summary>
             Inform Vuforia that the device has been inserted into a viewer or it has
-            been removed froma a viewer. Using this method allows specifying if the 
+            been removed froma a viewer. Using this method allows specifying if the
             camera should be re-initialized or not. If the camera is not re-initialized,
-            
             </summary>
             <remarks>
             If the camera is not re-initialized, switching between mono and stereo rendering
             will be a lot faster, but it will not use optimized performance modes for the different
-            configurations. 
+            configurations.
             </remarks>
             <param name="isActive">Whether the device is used with a viewer</param>
             <param name="reinitializeCamera">whether the camera should be reinitialized</param>
@@ -667,8 +666,8 @@
         <member name="T:Vuforia.EyewearUserCalibrator">
              <summary>A class for creating custom user calibration procedures for see-through eyewear</summary>
              <remarks>
-             <br/><b>This API is only supported in the %Vuforia SDK for Digital %Eyewear.</b><br/><br/>
-            
+             <br /><b>This API is only supported in the %Vuforia SDK for Digital %Eyewear.</b><br /><br />
+
              <list type="bullet">
              <item><description>
                Users of optical see-through eyewear devices need to perform a calibration
@@ -753,7 +752,7 @@
             </remarks>
             <param name="readings">An array of calibration readings</param>
             <param name="numReadings">The number of readings taken, poseReadings and scales must be this length</param>
-            <param name="cameraToEyeMatrix">A rigid transformation that maps a point in camera coordinates into a point 
+            <param name="cameraToEyeMatrix">A rigid transformation that maps a point in camera coordinates into a point
             in the user's eye coordinates</param>
             <param name="projectionMatrix">A projection that maps a 3D point in user's eye coordinates into a 2D point
             on the display</param>
@@ -769,8 +768,8 @@
              Class that provides functionality specific to AR on Eyewear devices.
              </summary>
              <remarks>
-             <br/><b>This API is only supported in the %Vuforia SDK for Digital %Eyewear.</b><br/><br/>
-            
+             <br /><b>This API is only supported in the %Vuforia SDK for Digital %Eyewear.</b><br /><br />
+
              The EyewearCalibrationProfileManager allows the user to list the number of calibration
              profiles available on the device and select the active profile to use.
              </remarks>
@@ -793,20 +792,20 @@
             <summary>
             Get the ID of the active user calibration profile.
             </summary>
-            <returns>Return a number between 0 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount"/>.</returns>
+            <returns>Return a number between 0 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount" />.</returns>
         </member>
         <member name="M:Vuforia.EyewearCalibrationProfileManager.setActiveProfile(System.Int32)">
             <summary>
             Set a calibration profile as active.
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount" />.</param>
             <returns>Return true if the active profile is changed, false otherwise (e.g. if the specified profile is not valid)</returns>
         </member>
         <member name="M:Vuforia.EyewearCalibrationProfileManager.getCameraToEyePose(System.Int32,Vuforia.EyewearDevice.EyeID)">
             <summary>
             Get the pose between camera and eye for the specified profile and eye.
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount" />.</param>
             <param name="eyeID">the Eye to retrieve the projection matrix for, one of EYEID_MONOCULAR, EYEID_LEFT or EYEID_RIGHT.</param>
             <returns>Return the stored projection matrix, will contain all 0's if no data is stored for the profile.</returns>
         </member>
@@ -814,7 +813,7 @@
             <summary>
             Get the projection matrix for the specified profile and eye.
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount" />.</param>
             <param name="eyeID">the Eye to retrieve the projection matrix for, one of EYEID_MONOCULAR, EYEID_LEFT or EYEID_RIGHT.</param>
             <returns>Return the stored projection matrix, will contain all 0's if no data is stored for the profile.</returns>
         </member>
@@ -822,7 +821,7 @@
             <summary>
             Store the pose between camera and eye to a calibration profile
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount" />.</param>
             <param name="eyeID">the Eye to retrieve the projection matrix for, one of EYEID_MONOCULAR, EYEID_LEFT or EYEID_RIGHT.</param>
             <param name="projectionMatrix">The projection matrix to store</param>
             <returns>Return true if the new projection matrix was stored successfully, false otherwise.</returns>
@@ -831,7 +830,7 @@
             <summary>
             Store a projection matrix to a calibration profile
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount" />.</param>
             <param name="eyeID">the Eye to retrieve the projection matrix for, one of EYEID_MONOCULAR, EYEID_LEFT or EYEID_RIGHT.</param>
             <param name="projectionMatrix">The projection matrix to store</param>
             <returns>Return true if the new projection matrix was stored successfully, false otherwise.</returns>
@@ -840,14 +839,14 @@
             <summary>
             Get the display name associated with a profile
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount" />.</param>
             <returns>Return a unicode string, if no display name has been provided for the specified profile an empty string will be returned.</returns>
         </member>
         <member name="M:Vuforia.EyewearCalibrationProfileManager.setProfileName(System.Int32,System.String)">
             <summary>
             Set a display name associated with a profile.
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount" />.</param>
             <param name="name">A unicode string to use as the display name</param>
             <returns>Returns true if the display name was successfully set, false otherwise.</returns>
         </member>
@@ -855,7 +854,7 @@
             <summary>
             Delete all stored data for the specified profile.
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManager.getMaxCount" />.</param>
             <returns>Returns true if the profile was successfully cleared, false otherwise.</returns>
         </member>
         <member name="T:Vuforia.PlayModeEyewearDevice">
@@ -912,7 +911,7 @@
         </member>
         <member name="P:Vuforia.BaseCameraConfiguration.VideoBackgroundMirrored">
             <summary>
-            Used to set the VideoBackgroundMirrored value and get the current reflection value 
+            Used to set the VideoBackgroundMirrored value and get the current reflection value
             </summary>
         </member>
         <member name="T:Vuforia.BaseStereoViewerCameraConfiguration">
@@ -935,7 +934,7 @@
         <member name="M:Vuforia.BaseStereoViewerCameraConfiguration.UpdateStereoDepth(UnityEngine.Transform)">
             <summary>
             if enabled (mAutoAdjustStereoCameraSkewing), this method sets the stereo depth to the nearest
-            trackable. This will move the video background to the trackable depth and skew the projection 
+            trackable. This will move the video background to the trackable depth and skew the projection
             matrices of the cameras.
             </summary>
         </member>
@@ -1002,8 +1001,8 @@
         </member>
         <member name="M:Vuforia.MixedRealityController.ConfigureForDifferentStereoFramework(Vuforia.DigitalEyewearAbstractBehaviour.StereoFramework,UnityEngine.Transform,UnityEngine.Camera,UnityEngine.Camera)">
             <summary>
-            Use this method to configure a 3rd party stereo framework if the ARCamera has been configured for handheld 
-            use case and you want to switch to a stereo viewer experience. After calling this method, use SetMode() 
+            Use this method to configure a 3rd party stereo framework if the ARCamera has been configured for handheld
+            use case and you want to switch to a stereo viewer experience. After calling this method, use SetMode()
             to switch to the new mode. This is not required if you are using the Vuforia stereo framework.
             Also, if this has been configured in the ARCamera inspector before, it is not necessary to set it using this method.
             </summary>
@@ -1060,12 +1059,12 @@
             <summary>
             The RotationalDeviceTracker tracks a device in the world by relying on
             sensor tracking. The RotationalDeviceTracker publishes device trackable
-            result. Device Trackable results are in world coordinate system 
+            result. Device Trackable results are in world coordinate system
              and use a physical unit (meter).
-             A rotational device tracker can use model correction to improve the 
-             returned pose based on the context usage (e.g. on the  head for doing 
-             head tracking,  holding device in your hands for handheld tracking, etc). 
-             This tracker also supports a pose prediction mode to improve the quality 
+             A rotational device tracker can use model correction to improve the
+             returned pose based on the context usage (e.g. on the  head for doing
+             head tracking,  holding device in your hands for handheld tracking, etc).
+             This tracker also supports a pose prediction mode to improve the quality
              of returned pose. You should only use this mode in VR configuration!
             </summary>
         </member>
@@ -1095,11 +1094,11 @@
         <member name="M:Vuforia.RotationalDeviceTracker.SetModelCorrectionMode(Vuforia.RotationalDeviceTracker.MODEL_CORRECTION_MODE)">
             <summary>
             Specify a correction mode of the returned pose with default correction offsets.
-            The rotational device tracker supports two transform models: 
+            The rotational device tracker supports two transform models:
             - Head: for head tracking (VR, rotational AR experience)
             - Handheld: for handheld tracking.
             By default no transform model is used.
-            Use the method SetModelCorrectionModeWithTransform if you want to specify 
+            Use the method SetModelCorrectionModeWithTransform if you want to specify
             a custom pivot point for the transform model.
             </summary>
         </member>
@@ -1111,10 +1110,10 @@
         </member>
         <member name="M:Vuforia.RotationalDeviceTracker.SetModelCorrectionModeWithTransform(Vuforia.RotationalDeviceTracker.MODEL_CORRECTION_MODE,UnityEngine.Vector3)">
             <summary>
-            Specify a correction mode of the returned pose with a custom 
+            Specify a correction mode of the returned pose with a custom
             correction offset. This is specified as an offset from the pivot point
             (e.g. neck) to the device.
-            The rotational device tracker supports two transform models: 
+            The rotational device tracker supports two transform models:
             - Head: for head tracking (VR, rotational AR experience)
             - Handheld: for handheld tracking.
             By default no transform model is used.
@@ -1131,7 +1130,7 @@
         </member>
         <member name="F:Vuforia.RotationalDeviceTracker.MODEL_CORRECTION_MODE.NONE">
             <summary>
-            Model Correction is disabled 
+            Model Correction is disabled
             </summary>
         </member>
         <member name="F:Vuforia.RotationalDeviceTracker.MODEL_CORRECTION_MODE.HEAD">
@@ -1286,20 +1285,20 @@
             <summary>
             Get the ID of the active user calibration profile.
             </summary>
-            <returns>Return a number between 0 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount"/>.</returns>
+            <returns>Return a number between 0 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount" />.</returns>
         </member>
         <member name="M:Vuforia.EyewearCalibrationProfileManagerImpl.setActiveProfile(System.Int32)">
             <summary>
             Set a calibration profile as active.
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount" />.</param>
             <returns>Return true if the active profile is changed, false otherwise (e.g. if the specified profile is not valid)</returns>
         </member>
         <member name="M:Vuforia.EyewearCalibrationProfileManagerImpl.getCameraToEyePose(System.Int32,Vuforia.EyewearDevice.EyeID)">
             <summary>
             Get the pose between camera and eye for the specified profile and eye.
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount" />.</param>
             <param name="eyeID">the Eye to retrieve the projection matrix for, one of EYEID_MONOCULAR, EYEID_LEFT or EYEID_RIGHT.</param>
             <returns>Return the stored projection matrix, will contain all 0's if no data is stored for the profile.</returns>
         </member>
@@ -1307,7 +1306,7 @@
             <summary>
             Get the projection matrix for the specified profile and eye.
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount" />.</param>
             <param name="eyeID">the Eye to retrieve the projection matrix for, one of EYEID_MONOCULAR, EYEID_LEFT or EYEID_RIGHT.</param>
             <returns>Return the stored projection matrix, will contain all 0's if no data is stored for the profile.</returns>
         </member>
@@ -1315,7 +1314,7 @@
             <summary>
             Store the pose between camera and eye to a calibration profile
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount" />.</param>
             <param name="eyeID">the Eye to retrieve the projection matrix for, one of EYEID_MONOCULAR, EYEID_LEFT or EYEID_RIGHT.</param>
             <param name="projectionMatrix">The projection matrix to store</param>
             <returns>Return true if the new projection matrix was stored successfully, false otherwise.</returns>
@@ -1324,7 +1323,7 @@
             <summary>
             Store a projection matrix to a calibration profile
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount" />.</param>
             <param name="eyeID">the Eye to retrieve the projection matrix for, one of EYEID_MONOCULAR, EYEID_LEFT or EYEID_RIGHT.</param>
             <param name="projectionMatrix">The projection matrix to store</param>
             <returns>Return true if the new projection matrix was stored successfully, false otherwise.</returns>
@@ -1333,14 +1332,14 @@
             <summary>
             Get the display name associated with a profile
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount" />.</param>
             <returns>Return a unicode string, if no display name has been provided for the specified profile an empty string will be returned.</returns>
         </member>
         <member name="M:Vuforia.EyewearCalibrationProfileManagerImpl.setProfileName(System.Int32,System.String)">
             <summary>
             Set a display name associated with a profile.
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount" />.</param>
             <param name="name">A unicode string to use as the display name</param>
             <returns>Returns true if the display name was successfully set, false otherwise.</returns>
         </member>
@@ -1348,7 +1347,7 @@
             <summary>
             Delete all stored data for the specified profile.
             </summary>
-            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount"/>.</param>
+            <param name="profileID">A number between 1 and <see cref="M:Vuforia.EyewearCalibrationProfileManagerImpl.getMaxCount" />.</param>
             <returns>Returns true if the profile was successfully cleared, false otherwise.</returns>
         </member>
         <member name="T:Vuforia.BackgroundPlaneAbstractBehaviour">
@@ -1401,7 +1400,7 @@
         </member>
         <member name="T:Vuforia.IOSCamRecoveringHelper">
             <summary>
-            Helper class used to work around an issue on iOS8 where the camera fails to 
+            Helper class used to work around an issue on iOS8 where the camera fails to
             Start after pausing and resuming the app.
             </summary>
         </member>
@@ -1520,7 +1519,7 @@
         </member>
         <member name="T:Vuforia.MonoCameraConfiguration">
             <summary>
-            This rendering state implementation handles parameter control of a single 
+            This rendering state implementation handles parameter control of a single
             mono camera. It controls video background configuration and setting the projection matrix for that camera.
             </summary>
         </member>
@@ -1545,7 +1544,7 @@
             <summary>
             Extension methods for the Unity Camera class.
             This works around an API change in Unity 5 where Camera.pixelHeight returns an int instead of a float.
-            Because the Unity extension is shipped as a precompiled library, we can only link against either the float version or 
+            Because the Unity extension is shipped as a precompiled library, we can only link against either the float version or
             the int version. To work with both Unity 4.6 and 5.0, we use these extension methods instead.
             </summary>
         </member>
@@ -1590,13 +1589,13 @@
         </member>
         <member name="M:Vuforia.IViewerParametersList.Get(System.Int32)">
             <summary>
-            Returns the item at the specified index. 
+            Returns the item at the specified index.
             Returns null if the index is out of range.
             </summary>
         </member>
         <member name="M:Vuforia.IViewerParametersList.Get(System.String,System.String)">
             <summary>
-            Returns ViewerParameters for the specified viewer name and manufacturer. 
+            Returns ViewerParameters for the specified viewer name and manufacturer.
             Returns null if no viewer was matched.
             </summary>
         </member>
@@ -1604,13 +1603,13 @@
             <summary>
             Set a filter for a 3rd party VR SDK
             </summary>
-            Allows the list to be filtered for a specific 3rd party SDK. 
+            Allows the list to be filtered for a specific 3rd party SDK.
             Known SDKs are "GEARVR" and "CARDBOARD".
             To return to the default list of viewers set the filter to the empty string.
         </member>
         <member name="M:Vuforia.IViewerParametersList.GetAllViewers">
             <summary>
-            Get the list of all supported Vuforia Viewers 
+            Get the list of all supported Vuforia Viewers
             </summary>
         </member>
         <member name="P:Vuforia.ViewerParametersList.ListForAuthoringTools">
@@ -1755,7 +1754,7 @@
         <member name="M:Vuforia.DataSetTrackableBehaviour.SetAsSmartTerrainInitializationTarget">
             <summary>
             This methods sets the current target as the initialization target on the SmartTerrainTracker
-            using the configuration set in the inspector. 
+            using the configuration set in the inspector.
             Otherwise please use the SmartTerrainTracker.SetInitializationTarget API.
             This method will be automatically called on detection of this target, but only if the SmartTerrainTracker
             a) has not been started yet
@@ -2064,7 +2063,7 @@
             This is the main behaviour class that encapsulates cloud recognition behaviour.
             It just has to be added to a Vuforia-enabled Unity scene and will initialize the target finder and wait for new results.
             State changes and new results will be sent to registered ICloudRecoEventHandlers
-            </summary> 
+            </summary>
         </member>
         <member name="M:Vuforia.CloudRecoAbstractBehaviour.Initialize">
             <summary>
@@ -2144,7 +2143,7 @@
         </member>
         <member name="M:Vuforia.ReconstructionImpl.SetMaximumArea(UnityEngine.Rect)">
             <summary>
-            Set the maximum area of the reconstruction in scene units. 
+            Set the maximum area of the reconstruction in scene units.
             The ground plane will not expand outside of this rectangle.
             Props are only created inside the rectangle. Props on the boundary
             of the rectangle will be cut off.
@@ -2395,7 +2394,7 @@
         </member>
         <member name="M:Vuforia.Reconstruction.SetMaximumArea(UnityEngine.Rect)">
             <summary>
-            Set the maximum area of the reconstruction in scene units. 
+            Set the maximum area of the reconstruction in scene units.
             The ground plane will not expand outside of this rectangle.
             Props are only created inside the rectangle. Props on the boundary
             of the rectangle will be cut off.
@@ -2464,7 +2463,7 @@
             <summary>
             Set the Trackable that is used to initialize the Reconstruction.
             Use occluderMin and occluderMax to specify an occluder box that will serve as a mask for plane finding.
-            offsetToOccluderOrigin and rotationToOccluderOrigin define a translational offset and rotation of the occluder volume to the initialization target. 
+            offsetToOccluderOrigin and rotationToOccluderOrigin define a translational offset and rotation of the occluder volume to the initialization target.
             </summary>
         </member>
         <member name="M:Vuforia.ReconstructionFromTarget.SetInitializationTarget(Vuforia.ImageTarget,UnityEngine.Vector3,UnityEngine.Vector3)">
@@ -2509,7 +2508,7 @@
         <member name="P:Vuforia.ReconstructionFromTargetImpl.CanAutoSetInitializationTarget">
             <summary>
             Returns true if the the tracker hasn't started yet or has been reset.
-            Will return false if the reconstruction has been added to the builder, but not reset - in this case a detected initialization target should not 
+            Will return false if the reconstruction has been added to the builder, but not reset - in this case a detected initialization target should not
             automatically set itself as the new initialization target.
             </summary>
         </member>
@@ -2892,7 +2891,7 @@
         <member name="M:Vuforia.DatabaseLoadAbstractBehaviour.AddOSSpecificExternalDatasetSearchDirs">
             <summary>
             Override this method to insert new dataset search roots for datasets defined in StreamingAssets/QCAR.  This may
-            be used to streamline the "Split Application Binary" Unity feature under the Android plugin.  This method is 
+            be used to streamline the "Split Application Binary" Unity feature under the Android plugin.  This method is
             called before the datasets are loaded and paths may be added using the "AddExternalDatasetRoot(string)".
             </summary>
         </member>
@@ -2903,13 +2902,13 @@
         </member>
         <member name="T:Vuforia.RectangleData">
             <summary>
-            This struct defines the 2D coordinates of a rectangle. 
+            This struct defines the 2D coordinates of a rectangle.
             The struct is internally used for setting Virtual Buttons or getting bounding boxes of letters.
             </summary>
         </member>
         <member name="T:Vuforia.RectangleIntData">
             <summary>
-            This struct defines the 2D coordinates of a rectangle using integers. 
+            This struct defines the 2D coordinates of a rectangle using integers.
             The struct is internally used for querying the region of interest for text tracking.
             </summary>
         </member>
@@ -3115,12 +3114,12 @@
         </member>
         <member name="M:Vuforia.ImageTargetBuilder.Build(System.String,System.Single)">
             <summary>
-            Build an Image Target Trackable source from the next available camera frame 
-            
+            Build an Image Target Trackable source from the next available camera frame
+
             Build an Image Target Trackable Source from the next available camera frame.
             This is an asynchronous process, the result of which will be available from
              getTrackableSource()
-            
+
             This method will return true if the build was successfully started, and false
             if an invalid name or sceenSizeWidth is provided.
             </summary>
@@ -3128,14 +3127,14 @@
         <member name="M:Vuforia.ImageTargetBuilder.StartScan">
             <summary>
             Start the scanning mode, allowing calls to getFrameQuality()
-            
+
             Starts the internal frame scanning process, allowing calls to getFrameQuality()
             </summary>
         </member>
         <member name="M:Vuforia.ImageTargetBuilder.StopScan">
             <summary>
             Stop the scanning mode
-            
+
             Stop the scanning mode, getFrameQuality will return FRAME_QUALITY_NONE until
             startScan is called again.  Stopping scan mode will reduce the overall system
             utilization when not building ImageTargets.
@@ -3144,11 +3143,11 @@
         <member name="M:Vuforia.ImageTargetBuilder.GetFrameQuality">
             <summary>
             Get frame quality, available after startScan is called.
-            
+
             Will return the frame quality for the last available camera frame, a value
             of FRAME_QUALITY_NONE will be returned if the scanning mode was not enabled.
             via the startScan() method.
-            
+
             This methods makes a marshalling call into native, so buffer the result
             instead of calling it multiple times a frame for better performance.
             </summary>
@@ -3156,12 +3155,12 @@
         <member name="M:Vuforia.ImageTargetBuilder.GetTrackableSource">
             <summary>
             Returns a trackable source object to be used in adding a new target to a dataset
-            
-            This method will return a TrackableSource to be provided to the DataSet.  This 
+
+            This method will return a TrackableSource to be provided to the DataSet.  This
             API will return NULL until a trackable source is available.  This trackable
             source will be provided via this api until build() is called again, at which
             point it will return NULL again until a successful build step has occured.
-            
+
             This methods makes a marshalling call into native, so buffer the result
             instead of calling it multiple times a frame for better performance.
             </summary>
@@ -3271,13 +3270,13 @@
         <member name="T:Vuforia.Image">
             <summary>
             An image - Used to expose the camera frame.
-            
+
             The image's pixel buffer can have a different size than the
             Wdith and Height properties report. This is e.g. the
             case when an image is used for rendering as a texture without
             non-power-of-two support.
             The real size of the image's pixel buffer can be queried using
-            BufferWidth and BufferHeight. 
+            BufferWidth and BufferHeight.
             </summary>
         </member>
         <member name="M:Vuforia.Image.IsValid">
@@ -3341,7 +3340,7 @@
         </member>
         <member name="M:Vuforia.ImageTargetBuilderImpl.Build(System.String,System.Single)">
             <summary>
-             Build an Image Target Trackable source from the next available camera frame 
+             Build an Image Target Trackable source from the next available camera frame
             </summary>
         </member>
         <member name="M:Vuforia.ImageTargetBuilderImpl.StartScan">
@@ -3429,7 +3428,7 @@
         </member>
         <member name="M:Vuforia.ObjectTracker.GetActiveDataSets">
             <summary>
-            Returns the currently activated datasets. 
+            Returns the currently activated datasets.
             </summary>
         </member>
         <member name="M:Vuforia.ObjectTracker.GetDataSets">
@@ -3751,12 +3750,12 @@
             there are application specific trade offs to consider. These hints can be
             passed to the function as parameters (see FpsHint). For example,
             an application with animated content may need consistent 60 fps rendering
-            even on a device that can only deliver poses at 30 fps. GetRecommendedFps 
+            even on a device that can only deliver poses at 30 fps. GetRecommendedFps
             considers the device parameters as well as the application specific hints
             and returns a recommended frame rate. The returned value can then be set
             via setTargetFps. Note that GetRecommendedFps may return different values
-            tuned to the active CameraDevice.CameraDeviceMode and active Trackers. 
-            Thus it is recommended to call this API after the application has completed 
+            tuned to the active CameraDevice.CameraDeviceMode and active Trackers.
+            Thus it is recommended to call this API after the application has completed
             the camera and tracker setup as well as when an application transitions
             between modes (For example when transitioning between AR to VR modes)
             </summary>
@@ -3812,7 +3811,7 @@
         </member>
         <member name="F:Vuforia.VuforiaRenderer.FpsHint.FAST">
             <summary>
-            The application uses content that requires a high rendering rate, 
+            The application uses content that requires a high rendering rate,
             E.g. using smooth character animation.
             </summary>
         </member>
@@ -4035,7 +4034,7 @@
         </member>
         <member name="P:Vuforia.SmartTerrainTracker.SmartTerrainBuilder">
             <summary>
-            Returns the SmartTerrainBuilder Instance 
+            Returns the SmartTerrainBuilder Instance
             </summary>
         </member>
         <member name="M:Vuforia.SmartTerrainTrackerImpl.SetScaleToMillimeter(System.Single)">
@@ -4116,9 +4115,9 @@
             <summary>
             Returns an image representing the bit mask of the letters in the word.
             Each pixel in the image is represented by a byte (8-bit value).
-            A value of 255 represents an empty area, i.e. a pixel not covered 
+            A value of 255 represents an empty area, i.e. a pixel not covered
             by any letter of the word.
-            If a pixel is covered by a letter, then the pixel value represents 
+            If a pixel is covered by a letter, then the pixel value represents
             the position of that letter in the word, i.e. 0 for the first character,
             1 for the second, 2 for the third, and so on.
             </summary>
@@ -4142,9 +4141,9 @@
             <summary>
             Returns an image representing the bit mask of the letters in the word.
             Each pixel in the image is represented by a byte (8-bit value).
-            A value of 255 represents an empty area, i.e. a pixel not covered 
+            A value of 255 represents an empty area, i.e. a pixel not covered
             by any letter of the word.
-            If a pixel is covered by a letter, then the pixel value represents 
+            If a pixel is covered by a letter, then the pixel value represents
             the position of that letter in the word, i.e. 0 for the first character,
             1 for the second, 2 for the third, and so on.
             </summary>
@@ -4290,14 +4289,14 @@
         <member name="T:Vuforia.WordResultImpl">
             <summary>
             A WordResult provides the current state of a Word.
-            It contains all dynamic information that changes frame-to-frame, 
+            It contains all dynamic information that changes frame-to-frame,
             i.e. which is based on the current pose of the word
             </summary>
         </member>
         <member name="T:Vuforia.WordResult">
             <summary>
             A WordResult provides the current state of a Word.
-            It contains all dynamic information that changes frame-to-frame, 
+            It contains all dynamic information that changes frame-to-frame,
             i.e. which is based on the current pose of the word
             </summary>
         </member>
@@ -4361,20 +4360,20 @@
             <summary>
             This class represents a list of words that can be detected and tracked.
             Custom words and filter lists can be defined for a word list.
-            
+
             The WordList represents the set of detectable Words. This list is
             loaded from a binary data file using LoadWordListFile.
             The application may choose to add a small set of additional custom words to
             the WordList using the APIs below.
             The filter list allows an application to specify a subset of Words
-            from the WordList that will be detected and tracked. 
+            from the WordList that will be detected and tracked.
             Note that the TextTracker needs to be stopped prior to making modifications
             to the WordList.
             </summary>
         </member>
         <member name="M:Vuforia.WordList.LoadWordListFile(System.String)">
             <summary>
-            Loads the word list from a binary file at the default 
+            Loads the word list from a binary file at the default
             "Assets/StreamingAssets" directory.
             </summary>
         </member>
@@ -4386,13 +4385,13 @@
         </member>
         <member name="M:Vuforia.WordList.AddWordsFromFile(System.String)">
             <summary>
-            Loads a set of custom words from a plain text file at the default 
+            Loads a set of custom words from a plain text file at the default
             "Assets/StreamingAssets" directory.
             </summary>
         </member>
         <member name="M:Vuforia.WordList.AddWordsFromFile(System.String,Vuforia.VuforiaUnity.StorageType)">
             <summary>
-            Loads a set of custom words from a plain text file at the specified 
+            Loads a set of custom words from a plain text file at the specified
             path and storage location
             The word list is extended with the custom words in the plain text file.
             No more than 10.000 custom words can be added to the word list. Each word
@@ -4415,7 +4414,7 @@
         </member>
         <member name="M:Vuforia.WordList.ContainsWord(System.String)">
             <summary>
-            Returns true if the given word is present in the WordList 
+            Returns true if the given word is present in the WordList
             </summary>
         </member>
         <member name="M:Vuforia.WordList.UnloadAllLists">
@@ -4440,24 +4439,24 @@
         </member>
         <member name="M:Vuforia.WordList.LoadFilterListFile(System.String)">
             <summary>
-            Loads the filter list from a plain text file at the default 
+            Loads the filter list from a plain text file at the default
             "Assets/StreamingAssets" directory.
             </summary>
         </member>
         <member name="M:Vuforia.WordList.LoadFilterListFile(System.String,Vuforia.VuforiaUnity.StorageType)">
             <summary>
-            Loads the filter list from a plain text file at the specified 
+            Loads the filter list from a plain text file at the specified
             path and storage location
             </summary>
         </member>
         <member name="M:Vuforia.WordList.AddWordToFilterList(System.String)">
             <summary>
-            Add a single word to the filter list 
+            Add a single word to the filter list
             </summary>
         </member>
         <member name="M:Vuforia.WordList.RemoveWordFromFilterList(System.String)">
             <summary>
-            Remove a word from the filter list 
+            Remove a word from the filter list
             </summary>
         </member>
         <member name="M:Vuforia.WordList.ClearFilterList">
@@ -4477,9 +4476,9 @@
         </member>
         <member name="M:Vuforia.WordListImpl.LoadWordListFile(System.String)">
             <summary>
-            Loads the word list from a binary file at the default 
+            Loads the word list from a binary file at the default
             "Assets/StreamingAssets" directory.
-            </summary>    
+            </summary>
         </member>
         <member name="M:Vuforia.WordListImpl.LoadWordListFile(System.String,Vuforia.VuforiaUnity.StorageType)">
             <summary>
@@ -4489,13 +4488,13 @@
         </member>
         <member name="M:Vuforia.WordListImpl.AddWordsFromFile(System.String)">
             <summary>
-            Loads a set of custom words from a plain text file at the default 
+            Loads a set of custom words from a plain text file at the default
             "Assets/StreamingAssets" directory.
             </summary>
         </member>
         <member name="M:Vuforia.WordListImpl.AddWordsFromFile(System.String,Vuforia.VuforiaUnity.StorageType)">
             <summary>
-            Loads a set of custom words from a plain text file at the specified 
+            Loads a set of custom words from a plain text file at the specified
             path and storage location
             The word list is extended with the custom words in the plain text file.
             No more than 10.000 custom words can be added to the word list. Each word
@@ -4518,7 +4517,7 @@
         </member>
         <member name="M:Vuforia.WordListImpl.ContainsWord(System.String)">
             <summary>
-            Returns true if the given word is present in the WordList 
+            Returns true if the given word is present in the WordList
             </summary>
         </member>
         <member name="M:Vuforia.WordListImpl.UnloadAllLists">
@@ -4543,24 +4542,24 @@
         </member>
         <member name="M:Vuforia.WordListImpl.LoadFilterListFile(System.String)">
             <summary>
-            Loads the filter list from a plain text file at the default 
+            Loads the filter list from a plain text file at the default
             "Assets/StreamingAssets" directory.
             </summary>
         </member>
         <member name="M:Vuforia.WordListImpl.LoadFilterListFile(System.String,Vuforia.VuforiaUnity.StorageType)">
             <summary>
-            Loads the filter list from a plain text file at the specified 
+            Loads the filter list from a plain text file at the specified
             path and storage location
             </summary>
         </member>
         <member name="M:Vuforia.WordListImpl.AddWordToFilterList(System.String)">
             <summary>
-            Add a single word to the filter list 
+            Add a single word to the filter list
             </summary>
         </member>
         <member name="M:Vuforia.WordListImpl.RemoveWordFromFilterList(System.String)">
             <summary>
-            Remove a word from the filter list 
+            Remove a word from the filter list
             </summary>
         </member>
         <member name="M:Vuforia.WordListImpl.ClearFilterList">
@@ -4750,7 +4749,7 @@
         </member>
         <member name="P:Vuforia.KeepAliveAbstractBehaviour.Instance">
             <summary>
-            Provides singleton-like access to this MonoBehaviour 
+            Provides singleton-like access to this MonoBehaviour
             </summary>
         </member>
         <member name="T:Vuforia.ReconstructionAbstractBehaviour">
@@ -4844,18 +4843,18 @@
         </member>
         <member name="M:Vuforia.ReconstructionAbstractBehaviour.AssociateProp(Vuforia.PropAbstractBehaviour,Vuforia.Prop)">
             <summary>
-            Associate a Prop trackable with a behaviour. 
+            Associate a Prop trackable with a behaviour.
             The template PropBehaviour is duplicated and associated with the given prop
-            Association will fail if the Prop has already been associated with another behaviour 
+            Association will fail if the Prop has already been associated with another behaviour
             or if the template is not a child object of the Reconstruction game object
             </summary>
             <returns>null if association was not successful</returns>
         </member>
         <member name="M:Vuforia.ReconstructionAbstractBehaviour.AssociateSurface(Vuforia.SurfaceAbstractBehaviour,Vuforia.Surface)">
             <summary>
-            Associate a Surface trackable with a behaviour. 
+            Associate a Surface trackable with a behaviour.
             The template SurfaceBehaviour is duplicated and associated with the given surface
-            Association will fail if the Surface has already been associated with another behaviour 
+            Association will fail if the Surface has already been associated with another behaviour
             or if the template is not a child object of the Reconstruction game object
             </summary>
             <returns>null if association was not successful</returns>
@@ -5003,7 +5002,7 @@
             <summary>
             Finds DataSetTrackableBehaviours for this dataset and associates them with the Trackables in the DataSet.
             VirtualButtonBehaviours created in the scene are associated with the VirtualButtons in the DataSet or created there.
-            
+
             If there is a Trackable in the DataSet where no TrackableBehaviour exists yet, this Behaviour is created, together with its VirtualButtons.
             </summary>
         </member>
@@ -5075,7 +5074,7 @@
         <member name="M:Vuforia.TargetFinder.StartInit(System.String,System.String)">
              <summary>
              Starts initialization of the cloud-based recognition system.
-            
+
              Initialization of the cloud-based recognition system may take significant
              time and is thus handled in a background process. Use GetInitState() to
              query the initialization progress and result. Pass in the user/password
@@ -5085,7 +5084,7 @@
         <member name="M:Vuforia.TargetFinder.GetInitState">
              <summary>
              Returns the current state of the initialization process
-            
+
              Returns INIT_SUCCESS if the cloud-based recognition system was
              initialized successfully. Initialization requires a network connection
              to be available on the device, otherwise INIT_ERROR_NO_NETWORK_CONNECTION
@@ -5103,7 +5102,7 @@
         <member name="M:Vuforia.TargetFinder.StartRecognition">
              <summary>
              Starts cloud recognition
-            
+
              Starts continuous recognition of Targets from the cloud.
              Use updateSearchResult() and getResult() to retrieve search matches.
              </summary>
@@ -5126,37 +5125,37 @@
         <member name="M:Vuforia.TargetFinder.IsRequesting">
              <summary>
              Returns true if the TargetFinder is in 'requesting' mode
-            
-             When in 'requesting' mode the TargetFinder has issued a search 
+
+             When in 'requesting' mode the TargetFinder has issued a search
              query to the recognition server and is waiting for the results.
              </summary>
         </member>
         <member name="M:Vuforia.TargetFinder.Update">
              <summary>
              Update cloud reco results
-            
+
              Clears and rebuilds the list of target search results with results found
              since the last call to updateSearchResults().
-             Also refreshes the IsRequesting flag. 
+             Also refreshes the IsRequesting flag.
              Returns the status code  UPDATE_RESULTS_AVAILABLE if new search results have been found.
              </summary>
         </member>
         <member name="M:Vuforia.TargetFinder.GetResults">
              <summary>
              Returns new search results
-            
+
              Earlier search result instances are destroyed when UpdateSearchResults
-             is called. 
+             is called.
              </summary>
         </member>
         <member name="M:Vuforia.TargetFinder.EnableTracking(Vuforia.TargetFinder.TargetSearchResult,System.String)">
              <summary>
              Enable this search result for tracking
-            
+
              Creates an ImageTarget for local detection and tracking of this target
              and returns a new ImageTargetBehaviour attached to a new game object with the given name.
              Note that this call may result in an earlier ImageTarget that was enabled for
-             tracking to be destroyed, including its ImageTargetBehaviour. 
+             tracking to be destroyed, including its ImageTargetBehaviour.
              Thus it is not advised to hold a pointer to an
              ealier created ImageTarget after calling enableTracking again. Returns
              NULL if the target failed to be enabled for tracking.
@@ -5165,11 +5164,11 @@
         <member name="M:Vuforia.TargetFinder.EnableTracking(Vuforia.TargetFinder.TargetSearchResult,UnityEngine.GameObject)">
              <summary>
              Enable this search result for tracking
-            
+
              Creates an ImageTarget for local detection and tracking of this target.
              If the given game object has no ImageTargetBehaviour, a new one will be created.
              Note that this call may result in an earlier ImageTarget that was enabled for
-             tracking to be destroyed, including its ImageTargetBehaviour. 
+             tracking to be destroyed, including its ImageTargetBehaviour.
              Thus it is not advised to hold a pointer to an
              ealier created ImageTarget after calling enableTracking again. Returns
              NULL if the target failed to be enabled for tracking.
@@ -5178,7 +5177,7 @@
         <member name="M:Vuforia.TargetFinder.ClearTrackables(System.Boolean)">
              <summary>
              Clears all targets enabled for tracking
-            
+
              Destroys all ImageTargets that have been created via EnableTracking().
              </summary>
         </member>
@@ -5233,7 +5232,7 @@
         <member name="M:Vuforia.TargetFinderImpl.StartInit(System.String,System.String)">
              <summary>
              Starts initialization of the cloud-based recognition system.
-            
+
              Initialization of the cloud-based recognition system may take significant
              time and is thus handled in a background process. Use GetInitState() to
              query the initialization progress and result. Pass in the user/password
@@ -5243,7 +5242,7 @@
         <member name="M:Vuforia.TargetFinderImpl.GetInitState">
              <summary>
              Returns the current state of the initialization process
-            
+
              Returns INIT_SUCCESS if the cloud-based recognition system was
              initialized successfully. Initialization requires a network connection
              to be available on the device, otherwise INIT_ERROR_NO_NETWORK_CONNECTION
@@ -5261,7 +5260,7 @@
         <member name="M:Vuforia.TargetFinderImpl.StartRecognition">
              <summary>
              Starts cloud recognition
-            
+
              Starts continuous recognition of Targets from the cloud.
              Use updateSearchResult() and getResult() to retrieve search matches.
              </summary>
@@ -5284,37 +5283,37 @@
         <member name="M:Vuforia.TargetFinderImpl.IsRequesting">
              <summary>
              Returns true if the TargetFinder is in 'requesting' mode
-            
-             When in 'requesting' mode the TargetFinder has issued a search 
+
+             When in 'requesting' mode the TargetFinder has issued a search
              query to the recognition server and is waiting for the results.
              </summary>
         </member>
         <member name="M:Vuforia.TargetFinderImpl.Update">
              <summary>
              Update cloud reco results
-            
+
              Clears and rebuilds the list of target search results with results found
              since the last call to updateSearchResults().
-             Also refreshes the IsRequesting flag. 
+             Also refreshes the IsRequesting flag.
              Returns the status code  UPDATE_RESULTS_AVAILABLE if new search results have been found.
              </summary>
         </member>
         <member name="M:Vuforia.TargetFinderImpl.GetResults">
              <summary>
              Returns new search results
-            
+
              Earlier search result instances are destroyed when UpdateSearchResults
-             is called. 
+             is called.
              </summary>
         </member>
         <member name="M:Vuforia.TargetFinderImpl.EnableTracking(Vuforia.TargetFinder.TargetSearchResult,System.String)">
              <summary>
              Enable this search result for tracking
-            
+
              Creates an ImageTarget for local detection and tracking of this target
              and returns a new ImageTargetBehaviour attached to a new game object with the given name.
              Note that this call may result in an earlier ImageTarget that was enabled for
-             tracking to be destroyed, including its ImageTargetBehaviour. 
+             tracking to be destroyed, including its ImageTargetBehaviour.
              Thus it is not advised to hold a pointer to an
              ealier created ImageTarget after calling enableTracking again. Returns
              NULL if the target failed to be enabled for tracking.
@@ -5323,11 +5322,11 @@
         <member name="M:Vuforia.TargetFinderImpl.EnableTracking(Vuforia.TargetFinder.TargetSearchResult,UnityEngine.GameObject)">
              <summary>
              Enable this search result for tracking
-            
+
              Creates an ImageTarget for local detection and tracking of this target.
              If the given game object has no ImageTargetBehaviour, a new one will be created.
              Note that this call may result in an earlier ImageTarget that was enabled for
-             tracking to be destroyed, including its ImageTargetBehaviour. 
+             tracking to be destroyed, including its ImageTargetBehaviour.
              Thus it is not advised to hold a pointer to an
              ealier created ImageTarget after calling enableTracking again. Returns
              NULL if the target failed to be enabled for tracking.
@@ -5336,7 +5335,7 @@
         <member name="M:Vuforia.TargetFinderImpl.ClearTrackables(System.Boolean)">
              <summary>
              Clears all targets enabled for tracking
-            
+
              Destroys all ImageTargets that have been created via EnableTracking().
              </summary>
         </member>
@@ -5411,7 +5410,7 @@
         <member name="T:Vuforia.VirtualButton">
              <summary>
              A virtual button on a trackable
-            
+
              Methods to modify a VirtualButton must not be called while the
              corresponding DataSet is active. The dataset must be deactivated first
              before reconfiguring a VirtualButton.
@@ -5426,7 +5425,7 @@
              <summary>
              Defines a new area for the button area in 3D scene units (the
              coordinate system is local to the ImageTarget).
-            
+
              This method must not be called while the corresponding DataSet is
              active or it will return false.
              </summary>
@@ -5434,7 +5433,7 @@
         <member name="M:Vuforia.VirtualButton.SetSensitivity(Vuforia.VirtualButton.Sensitivity)">
              <summary>
              Sets the sensitivity of the virtual button
-            
+
              Sensitivity allows deciding between fast and robust button press
              measurements. This method must not be called while the corresponding
              DataSet is active or it will return false.
@@ -5443,7 +5442,7 @@
         <member name="M:Vuforia.VirtualButton.SetEnabled(System.Boolean)">
              <summary>
              Enables or disables a virtual button
-            
+
              This method must not be called while the corresponding DataSet is
              active or it will return false.
              </summary>
@@ -5778,7 +5777,7 @@
         </member>
         <member name="M:Vuforia.VuforiaAbstractBehaviour.RegisterOnPauseCallback(System.Action{System.Boolean})">
             <summary>
-            Register for a callback that is invoked before Vuforia is pausing when the application is paused, 
+            Register for a callback that is invoked before Vuforia is pausing when the application is paused,
             and after Vuforia resumes when the applicaiton resumes. This can be used e.g. for restoring
             a focus mode after an applicaiton pause.
             More than one callback can be registered.
@@ -5838,7 +5837,7 @@
         </member>
         <member name="M:Vuforia.VuforiaAbstractBehaviour.SetAppLicenseKey(System.String)">
             <summary>
-            This method is used to set the Vuforia License key in an 
+            This method is used to set the Vuforia License key in an
             Awake() method before the Vuforia SDK is initalized.
             </summary>
         </member>
@@ -5857,7 +5856,7 @@
             Updates the scene with the latest tracking data and calls various callbacks
             </summary>
             <param name="forceUpdate">Forces updates to be made even if called multiple times during a single frame</param>
-            <param name="reapplyOldState">Updates the scene again even when the state has not changed. 
+            <param name="reapplyOldState">Updates the scene again even when the state has not changed.
             This can be useful if the camera has been moved, but no new tracking state has been reported yet.</param>
         </member>
         <member name="M:Vuforia.VuforiaAbstractBehaviour.ApplyCorrectedProjectionMatrix(UnityEngine.Matrix4x4,System.Boolean)">
@@ -5866,7 +5865,7 @@
             after correcting it with device specific parameters. This allows using a 3rd party projection matrix
             (e.g. from Cardboard or OVR SDK) whilst keeping the virtual content registered to the videobackground,
             but still keeping the FoV and clipping planes of the original matrix.
-            
+
             This API should NOT be used on see through devices. Instead, the user-calibrated projection matrix
             that is set by Vuforia should be left unmodified.
             </summary>
@@ -5881,14 +5880,14 @@
         </member>
         <member name="M:Vuforia.VuforiaAbstractBehaviour.ResetBackgroundPlane(System.Boolean)">
             <summary>
-            This method resets the number of frames for which the color buffer 
+            This method resets the number of frames for which the color buffer
             needs to be cleared.
             </summary>
         </member>
         <member name="M:Vuforia.VuforiaAbstractBehaviour.RequestDeinitTrackerNextFrame``1">
             <summary>
             Can be called to request deinitialization of a tracker in the next frame
-            This deinitialization will not happen if the VuforiaBehaviour is destroyed as well and 
+            This deinitialization will not happen if the VuforiaBehaviour is destroyed as well and
             deinits this tracker in the process.
             </summary>
         </member>
@@ -6069,7 +6068,7 @@
         </member>
         <member name="M:Vuforia.VuforiaRuntimeUtilities.DisableSleepMode">
             <summary>
-            The device screen stays turned on and bright 
+            The device screen stays turned on and bright
             </summary>
         </member>
         <member name="M:Vuforia.VuforiaRuntimeUtilities.ResetSleepMode">
@@ -6091,7 +6090,7 @@
         <member name="M:Vuforia.VuforiaRuntimeUtilities.StopCameraIfPossible(System.Boolean@,System.Boolean@)">
             <summary>
             This method stops the camera if it is not needed.
-            To do that, it checks whether the video background is rendered and if 
+            To do that, it checks whether the video background is rendered and if
             any tracker other than the object, marker and device tracker is started.
             For the object tracker, it checks whether any dataset is active, or if UDT or CR is used
             For the marker tracker, it checks whether any marker is defined
@@ -6157,7 +6156,7 @@
             This is the main behaviour class that encapsulates text recognition behaviour.
             It just has to be added to a Vuforia-enabled Unity scene and will initialize the text tracker with the configured word list.
             Events for newly recognized or lost words will be called on registered ITextRecoEventHandlers
-            </summary> 
+            </summary>
         </member>
         <member name="M:Vuforia.TextRecoAbstractBehaviour.RegisterTextRecoEventHandler(Vuforia.ITextRecoEventHandler)">
             <summary>
@@ -6230,7 +6229,7 @@
         </member>
         <member name="M:Vuforia.UserDefinedTargetBuildingAbstractBehaviour.StartScanning">
             <summary>
-            Starts scanning the current camera image for features. 
+            Starts scanning the current camera image for features.
             This will trigger callbacks to the registered event handlers whenever the
             frame quality changes.
             If 'StopTrackerWhileScanning' is set, this will stop the ObjectTracker
@@ -6420,7 +6419,7 @@
         </member>
         <member name="P:Vuforia.VirtualButtonAbstractBehaviour.UnregisterOnDestroy">
             <summary>
-            Unregistering Virtual Buttons should only be done if they have been 
+            Unregistering Virtual Buttons should only be done if they have been
             registered at runtime. This property is automatically set by
             ImageTargetBehaviour on registration.
             </summary>
@@ -6464,7 +6463,7 @@
         <member name="P:Vuforia.WebCamAbstractBehaviour.FlipHorizontally">
             <summary>
             If the image from the webcam should be flipped horizontally.
-            Some webcams will deliver a mirrored image, in that case 
+            Some webcams will deliver a mirrored image, in that case
             </summary>
         </member>
         <member name="P:Vuforia.WebCamAbstractBehaviour.TurnOffWebCam">

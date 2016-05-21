@@ -1,26 +1,30 @@
-﻿using System;
-using UnityEngine;
-using Vuforia;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class CameraTargetListener : MonoBehaviour, ITargetListener
 {
-    public Text test;
+    public Text DebugText;
     private int messageCount;
 
     public void TargetEnteredView(string target)
     {
-        test.text = string.Format("{0}: {1} has entered", messageCount++, target);
+        DebugText.text = string.Format("{0}: {1} has entered", messageCount++, target);
+        GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator>().Open();
     }
 
     public void TargetLeftView(string target)
     {
-        test.text = string.Format("{0}: {1} has left", messageCount++, target);
+        DebugText.text = string.Format("{0}: {1} has left", messageCount++, target);
+        GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator>().Close();
     }
 
     public void TargetMoved(string target, Vector3 location)
     {
-        test.text = string.Format("{0}: {1} is at {2}", messageCount, target, location);
+        DebugText.text = string.Format("{0}: {1} is at {2}", messageCount++, target, location);
+    }
+
+    public void EnterDimension()
+    {
     }
 
     private void Start()

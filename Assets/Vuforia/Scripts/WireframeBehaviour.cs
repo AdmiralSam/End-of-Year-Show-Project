@@ -1,10 +1,10 @@
 /*===============================================================================
 Copyright (c) 2016 PTC Inc. All Rights Reserved.
- 
+
 Copyright (c) 2013-2015 Qualcomm Connected Experiences, Inc. All Rights Reserved.
-  
+
 Confidential and Proprietary - Protected under copyright and other laws.
-Vuforia is a trademark of PTC Inc., registered in the United States and other 
+Vuforia is a trademark of PTC Inc., registered in the United States and other
 countries.
 ===============================================================================*/
 
@@ -21,38 +21,36 @@ namespace Vuforia
     public class WireframeBehaviour : MonoBehaviour
     {
         #region PUBLIC_MEMBERS
-        
+
         public Material lineMaterial;
         public bool ShowLines = true;
         public Color LineColor = Color.green;
-        
-        #endregion // PUBLIC_MEMBERS
 
-        
+        #endregion PUBLIC_MEMBERS
+
         #region PRIVATE_MEMBERS
-        
-        private Material mLineMaterial;
-        
-        #endregion // PRIVATE_MEMBERS
 
+        private Material mLineMaterial;
+
+        #endregion PRIVATE_MEMBERS
 
         #region UNITY_MONOBEHAVIOUR_METHODS
-        
-        void Start()
+
+        private void Start()
         {
-            if (lineMaterial != null) 
+            if (lineMaterial != null)
             {
                 // We clone the material so to have a unique instance
                 // for each WireframeBehaviour instance
                 mLineMaterial = new Material(lineMaterial);
-            } 
-            else 
+            }
+            else
             {
-                Debug.LogWarning ("Missing line material for wireframe rendering!");
+                Debug.LogWarning("Missing line material for wireframe rendering!");
             }
         }
 
-        void OnRenderObject ()
+        private void OnRenderObject()
         {
             // avoid lines being rendered in Background-camera
             GameObject go = VuforiaManager.Instance.ARCameraTransform.gameObject;
@@ -60,41 +58,40 @@ namespace Vuforia
             bool valid = false;
             foreach (Camera cam in cameras)
             {
-                if(Camera.current == cam)
+                if (Camera.current == cam)
                     valid = true;
             }
-            if(!valid)
+            if (!valid)
                 return;
-        
+
             if (!ShowLines) return;
 
             var mf = GetComponent<MeshFilter>();
             if (!mf) return;
 
-
-            if (mLineMaterial == null) 
+            if (mLineMaterial == null)
             {
-                Debug.LogWarning ("Missing line material for wireframe rendering!");
+                Debug.LogWarning("Missing line material for wireframe rendering!");
                 return;
             }
 
             var mesh = mf.sharedMesh;
             var vertices = mesh.vertices;
             var triangles = mesh.triangles;
-    
+
             GL.PushMatrix();
             GL.MultMatrix(transform.localToWorldMatrix);
 
             mLineMaterial.SetPass(0);
-            mLineMaterial.SetColor ("_Color", LineColor);
+            mLineMaterial.SetColor("_Color", LineColor);
 
-            GL.Begin(GL.LINES); 
-            for (int i=0; i<triangles.Length; i+=3) {
+            GL.Begin(GL.LINES);
+            for (int i = 0; i < triangles.Length; i += 3)
+            {
+                var P0 = (vertices[triangles[i + 0]]);
+                var P1 = (vertices[triangles[i + 1]]);
+                var P2 = (vertices[triangles[i + 2]]);
 
-                var P0 = (vertices[triangles[i+0]]);
-                var P1 = (vertices[triangles[i+1]]);
-                var P2 = (vertices[triangles[i+2]]);
-            
                 GL.Vertex(P0);
                 GL.Vertex(P1);
                 GL.Vertex(P1);
@@ -102,16 +99,15 @@ namespace Vuforia
                 GL.Vertex(P2);
                 GL.Vertex(P0);
             }
-    
+
             GL.End();
             GL.PopMatrix();
         }
 
-        void OnDrawGizmos()
+        private void OnDrawGizmos()
         {
             if (ShowLines && enabled)
             {
-
                 var mf = GetComponent<MeshFilter>();
                 if (!mf) return;
 
@@ -137,6 +133,6 @@ namespace Vuforia
             }
         }
 
-        #endregion // UNITY_MONOBEHAVIOUR_METHODS
+        #endregion UNITY_MONOBEHAVIOUR_METHODS
     }
 }

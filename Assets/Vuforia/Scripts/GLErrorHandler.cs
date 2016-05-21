@@ -5,7 +5,6 @@ Confidential and Proprietary - Protected under copyright and other laws.
 ==============================================================================*/
 
 using UnityEngine;
-using System.Collections;
 
 namespace Vuforia
 {
@@ -22,9 +21,7 @@ namespace Vuforia
 
         private const string WINDOW_TITLE = "Sample Error";
 
-        #endregion // PRIVATE_MEMBER_VARIABLES
-
-
+        #endregion PRIVATE_MEMBER_VARIABLES
 
         #region PUBLIC_METHODS
 
@@ -37,14 +34,12 @@ namespace Vuforia
             mErrorOccurred = true;
         }
 
-        #endregion // PUBLIC_METHODS
-
-
+        #endregion PUBLIC_METHODS
 
         #region UNTIY_MONOBEHAVIOUR_METHODS
 
         // In this method we draw an error window in case something happened.
-        void OnGUI()
+        private void OnGUI()
         {
             // On error, create a full screen window.
             if (mErrorOccurred)
@@ -54,9 +49,7 @@ namespace Vuforia
             }
         }
 
-        #endregion // UNTIY_MONOBEHAVIOUR_METHODS
-
-
+        #endregion UNTIY_MONOBEHAVIOUR_METHODS
 
         #region PRIVATE_METHODS
 
@@ -75,6 +68,6 @@ namespace Vuforia
                 Application.Quit();
         }
 
-        #endregion // PRIVATE_METHODS
+        #endregion PRIVATE_METHODS
     }
 }

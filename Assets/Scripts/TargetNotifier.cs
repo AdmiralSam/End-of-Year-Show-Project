@@ -3,7 +3,7 @@ using Vuforia;
 
 public class TargetNotifier : MonoBehaviour, ITrackableEventHandler
 {
-    public CameraTargetListener listener;
+    public CameraTargetListener Listener;
     private bool active;
 
     public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus)
@@ -12,12 +12,12 @@ public class TargetNotifier : MonoBehaviour, ITrackableEventHandler
         {
             case TrackableBehaviour.Status.DETECTED:
             case TrackableBehaviour.Status.TRACKED:
-                listener.TargetEnteredView(transform.name);
+                Listener.TargetEnteredView(transform.name);
                 active = true;
                 break;
 
             default:
-                listener.TargetLeftView(transform.name);
+                Listener.TargetLeftView(transform.name);
                 active = false;
                 break;
         }
@@ -33,7 +33,7 @@ public class TargetNotifier : MonoBehaviour, ITrackableEventHandler
     {
         if (active)
         {
-            listener.TargetMoved(transform.name, new Vector3(-transform.position.x, -transform.position.y, transform.position.z));
+            Listener.TargetMoved(transform.name, new Vector3(-transform.position.x, -transform.position.y, transform.position.z));
         }
     }
 }

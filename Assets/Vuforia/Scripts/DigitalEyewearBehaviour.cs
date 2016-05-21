@@ -6,8 +6,6 @@ All Rights Reserved.
 Confidential and Proprietary - Protected under copyright and other laws.
 ==============================================================================*/
 
-using UnityEngine;
-
 namespace Vuforia
 {
     /// <summary>
@@ -16,7 +14,6 @@ namespace Vuforia
     /// </summary>
     public class DigitalEyewearBehaviour : DigitalEyewearAbstractBehaviour
     {
-
         private static DigitalEyewearBehaviour mDigitalEyewearBehaviour = null;
 
         /// <summary>

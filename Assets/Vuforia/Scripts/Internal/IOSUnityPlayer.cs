@@ -4,7 +4,6 @@ All Rights Reserved.
 Confidential and Proprietary - Protected under copyright and other laws.
 ==============================================================================*/
 
-using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ namespace Vuforia
     /// (size, orientation changed) and delegate this to native.
     /// These are used by Unity Extension code and should usually not be called by app code.
     /// </summary>
-    class IOSUnityPlayer : IUnityPlayer
+    internal class IOSUnityPlayer : IUnityPlayer
     {
         private ScreenOrientation mScreenOrientation = ScreenOrientation.Unknown;
 
@@ -62,7 +61,6 @@ namespace Vuforia
                 if (Screen.orientation != mScreenOrientation)
                     SetUnityScreenOrientation();
             }
-
         }
 
         public void Dispose()
@@ -93,7 +91,6 @@ namespace Vuforia
             VuforiaUnity.Deinit();
         }
 
-
         private void InitializeSurface()
         {
             SurfaceUtilities.OnSurfaceCreated();
@@ -106,7 +103,7 @@ namespace Vuforia
             mScreenOrientation = Screen.orientation;
             SurfaceUtilities.SetSurfaceOrientation(mScreenOrientation);
             // set the native orientation (only required on iOS)
-            setSurfaceOrientationiOS((int) mScreenOrientation);
+            setSurfaceOrientationiOS((int)mScreenOrientation);
         }
 
         [DllImport("__Internal")]

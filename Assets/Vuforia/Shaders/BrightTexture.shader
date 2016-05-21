@@ -1,52 +1,46 @@
 Shader "Custom/BrightTexture" {
-    Properties {
-        _MainTex ("Base (RGB)", 2D) = "white" {}
-    }
-    SubShader {
+	Properties{
+		_MainTex("Base (RGB)", 2D) = "white" {}
+	}
+		SubShader{
+		Pass{
+			CGPROGRAM
 
-    Pass{
+			#pragma vertex vert
+			#pragma fragment frag
 
-        CGPROGRAM
+			#include "UnityCG.cginc"
 
-        #pragma vertex vert
-        #pragma fragment frag
+			sampler2D _MainTex;
 
-        #include "UnityCG.cginc"
+			struct v2f {
+				float4  pos : SV_POSITION;
+				float2  uv : TEXCOORD0;
+			};
 
-        sampler2D _MainTex;
+			float4 _MainTex_ST;
 
-        struct v2f {
-            float4  pos : SV_POSITION;
-            float2  uv : TEXCOORD0;
-        };
+			v2f vert(appdata_base v)
+			{
+				v2f o;
+				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
+				return o;
+			}
 
-        float4 _MainTex_ST;
+			half4 frag(v2f i) : COLOR
+			{
+				half4 c = tex2D(_MainTex, i.uv);
 
-        v2f vert (appdata_base v)
-        {
-            v2f o;
-            o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
-            o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
-            return o;
-        }
+				float scale = 0.2f;
+				c.rgb = c.rgb * scale + 1.0f - scale;
 
-        
-        half4 frag(v2f i) : COLOR
-        {
-            half4 c = tex2D (_MainTex, i.uv);
+				return c;
+			}
 
-            float scale = 0.2f;
-            c.rgb = c.rgb * scale + 1.0f - scale;
+			ENDCG
+		}
+	}
 
-            return c;
-        }
-
-        ENDCG
-    }
-    }
-
-
-
-     
-    FallBack "Diffuse"
+		FallBack "Diffuse"
 }

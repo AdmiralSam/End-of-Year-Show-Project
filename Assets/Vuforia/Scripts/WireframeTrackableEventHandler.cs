@@ -4,7 +4,6 @@ All Rights Reserved.
 Confidential and Proprietary - Protected under copyright and other laws.
 ==============================================================================*/
 
-
 using UnityEngine;
 
 namespace Vuforia
@@ -16,16 +15,14 @@ namespace Vuforia
                                                 ITrackableEventHandler
     {
         #region PRIVATE_MEMBER_VARIABLES
- 
+
         private TrackableBehaviour mTrackableBehaviour;
-    
-        #endregion // PRIVATE_MEMBER_VARIABLES
 
-
+        #endregion PRIVATE_MEMBER_VARIABLES
 
         #region UNTIY_MONOBEHAVIOUR_METHODS
-    
-        void Start()
+
+        private void Start()
         {
             mTrackableBehaviour = GetComponent<TrackableBehaviour>();
             if (mTrackableBehaviour)
@@ -34,9 +31,7 @@ namespace Vuforia
             }
         }
 
-        #endregion // UNTIY_MONOBEHAVIOUR_METHODS
-
-
+        #endregion UNTIY_MONOBEHAVIOUR_METHODS
 
         #region PUBLIC_METHODS
 
@@ -59,18 +54,15 @@ namespace Vuforia
             }
         }
 
-        #endregion // PUBLIC_METHODS
-
-
+        #endregion PUBLIC_METHODS
 
         #region PRIVATE_METHODS
-
 
         private void OnTrackingFound()
         {
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
             Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
-		    WireframeBehaviour[] wireframeComponents = GetComponentsInChildren<WireframeBehaviour>(true);
+            WireframeBehaviour[] wireframeComponents = GetComponentsInChildren<WireframeBehaviour>(true);
 
             // Enable rendering:
             foreach (Renderer component in rendererComponents)
@@ -83,8 +75,8 @@ namespace Vuforia
             {
                 component.enabled = true;
             }
-		
-		    // Enable wireframe rendering:
+
+            // Enable wireframe rendering:
             foreach (WireframeBehaviour component in wireframeComponents)
             {
                 component.enabled = true;
@@ -93,12 +85,11 @@ namespace Vuforia
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
         }
 
-
         private void OnTrackingLost()
         {
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
             Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
-		    WireframeBehaviour[] wireframeComponents = GetComponentsInChildren<WireframeBehaviour>(true);
+            WireframeBehaviour[] wireframeComponents = GetComponentsInChildren<WireframeBehaviour>(true);
 
             // Disable rendering:
             foreach (Renderer component in rendererComponents)
@@ -111,8 +102,8 @@ namespace Vuforia
             {
                 component.enabled = false;
             }
-		
-		    // Disable wireframe rendering:
+
+            // Disable wireframe rendering:
             foreach (WireframeBehaviour component in wireframeComponents)
             {
                 component.enabled = false;
@@ -120,6 +111,6 @@ namespace Vuforia
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
         }
 
-        #endregion // PRIVATE_METHODS
+        #endregion PRIVATE_METHODS
     }
 }

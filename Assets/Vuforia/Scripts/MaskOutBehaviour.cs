@@ -15,7 +15,7 @@ namespace Vuforia
     {
         #region UNITY_MONOBEHAVIOUR_METHODS
 
-        void Start ()
+        private void Start()
         {
             if (VuforiaRuntimeUtilities.IsVuforiaEnabled())
             {
@@ -36,6 +36,6 @@ namespace Vuforia
             }
         }
 
-        #endregion // UNITY_MONOBEHAVIOUR_METHODS
+        #endregion UNITY_MONOBEHAVIOUR_METHODS
     }
 }

@@ -4,7 +4,6 @@ All Rights Reserved.
 Confidential and Proprietary - Protected under copyright and other laws.
 ==============================================================================*/
 
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Vuforia
@@ -16,7 +15,7 @@ namespace Vuforia
     {
         public override void AddOSSpecificExternalDatasetSearchDirs()
         {
-    #if UNITY_ANDROID
+#if UNITY_ANDROID
             if (Application.platform == RuntimePlatform.Android)
             {
                 // Get the external storage directory

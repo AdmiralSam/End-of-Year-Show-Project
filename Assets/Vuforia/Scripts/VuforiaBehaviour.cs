@@ -35,7 +35,7 @@ namespace Vuforia
             base.Awake();
         }
 
-        private static VuforiaBehaviour mVuforiaBehaviour= null;
+        private static VuforiaBehaviour mVuforiaBehaviour = null;
 
         /// <summary>
         /// A simple static singleton getter to the VuforiaBehaviour (if present in the scene)

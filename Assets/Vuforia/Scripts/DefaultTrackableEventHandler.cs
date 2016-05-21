@@ -15,16 +15,14 @@ namespace Vuforia
                                                 ITrackableEventHandler
     {
         #region PRIVATE_MEMBER_VARIABLES
- 
+
         private TrackableBehaviour mTrackableBehaviour;
-    
-        #endregion // PRIVATE_MEMBER_VARIABLES
 
-
+        #endregion PRIVATE_MEMBER_VARIABLES
 
         #region UNTIY_MONOBEHAVIOUR_METHODS
-    
-        void Start()
+
+        private void Start()
         {
             mTrackableBehaviour = GetComponent<TrackableBehaviour>();
             if (mTrackableBehaviour)
@@ -33,9 +31,7 @@ namespace Vuforia
             }
         }
 
-        #endregion // UNTIY_MONOBEHAVIOUR_METHODS
-
-
+        #endregion UNTIY_MONOBEHAVIOUR_METHODS
 
         #region PUBLIC_METHODS
 
@@ -59,12 +55,9 @@ namespace Vuforia
             }
         }
 
-        #endregion // PUBLIC_METHODS
-
-
+        #endregion PUBLIC_METHODS
 
         #region PRIVATE_METHODS
-
 
         private void OnTrackingFound()
         {
@@ -86,7 +79,6 @@ namespace Vuforia
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
         }
 
-
         private void OnTrackingLost()
         {
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
@@ -107,6 +99,6 @@ namespace Vuforia
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
         }
 
-        #endregion // PRIVATE_METHODS
+        #endregion PRIVATE_METHODS
     }
 }

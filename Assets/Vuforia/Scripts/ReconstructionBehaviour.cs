@@ -8,7 +8,7 @@ namespace Vuforia
 {
     /// <summary>
     /// This is the main behaviour class that encapsulates smart terrain reconstruction behaviour.
-    /// </summary> 
+    /// </summary>
     public class ReconstructionBehaviour : ReconstructionAbstractBehaviour
     {
     }

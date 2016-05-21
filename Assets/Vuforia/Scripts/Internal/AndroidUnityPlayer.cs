@@ -5,7 +5,6 @@ All Rights Reserved.
 Confidential and Proprietary - Protected under copyright and other laws.
 ==============================================================================*/
 
-using System;
 using UnityEngine;
 
 namespace Vuforia
@@ -15,24 +14,25 @@ namespace Vuforia
     /// (size, orientation changed) and delegate this to native.
     /// These are used by Unity Extension code and should usually not be called by app code.
     /// </summary>
-    class AndroidUnityPlayer : IUnityPlayer
+    internal class AndroidUnityPlayer : IUnityPlayer
     {
         // The Activity orientation is sometimes not correct when triggered immediately after the orientation change is
         // reported in Unity.
         // querying for the next 20 frames seems to yield the correct orientation eventually across all devices.
         private const int NUM_FRAMES_TO_QUERY_ORIENTATION = 25;
+
         private const int JAVA_ORIENTATION_CHECK_FRM_INTERVAL = 60;
         private ScreenOrientation mScreenOrientation = ScreenOrientation.Unknown;
         private ScreenOrientation mJavaScreenOrientation = ScreenOrientation.Unknown;
         private int mFramesSinceLastOrientationReset;
         private int mFramesSinceLastJavaOrientationCheck;
 
-    // AndroidJava resources need to be #if'd in order to allow AoT compilation on iOS
-    #if UNITY_ANDROID
+        // AndroidJava resources need to be #if'd in order to allow AoT compilation on iOS
+#if UNITY_ANDROID
         private AndroidJavaObject mCurrentActivity;
         private AndroidJavaClass mJavaOrientationUtility;
         private AndroidJavaClass mVuforiaInitializer;
-    #endif
+#endif
 
         #region PUBLIC_METHODS
 
@@ -113,24 +113,22 @@ namespace Vuforia
         // Java resources need to be explicitly disposed.
         public void Dispose()
         {
-    #if UNITY_ANDROID
+#if UNITY_ANDROID
             mCurrentActivity.Dispose();
             mCurrentActivity = null;
 
             mJavaOrientationUtility.Dispose();
             mJavaOrientationUtility = null;
-    #endif
+#endif
         }
 
-        #endregion // PUBLIC_METHODS
-
-
+        #endregion PUBLIC_METHODS
 
         #region PRIVATE_METHODS
 
         private void LoadNativeLibrariesFromJava()
         {
-    #if UNITY_ANDROID
+#if UNITY_ANDROID
             if (mCurrentActivity == null || mVuforiaInitializer == null)
             {
                 AndroidJavaClass javaUnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
@@ -146,7 +144,7 @@ namespace Vuforia
 
         private void InitAndroidPlatform()
         {
-    #if UNITY_ANDROID
+#if UNITY_ANDROID
             LoadNativeLibrariesFromJava();
             if (mVuforiaInitializer != null)
                 mVuforiaInitializer.CallStatic("initPlatform");
@@ -156,7 +154,7 @@ namespace Vuforia
         private int InitVuforia(string licenseKey)
         {
             int errorcode = -1;
-    #if UNITY_ANDROID
+#if UNITY_ANDROID
             LoadNativeLibrariesFromJava();
             if (mVuforiaInitializer != null)
                 errorcode = mVuforiaInitializer.CallStatic<int>("initVuforia", mCurrentActivity, licenseKey);
@@ -167,15 +165,15 @@ namespace Vuforia
         private void InitializeSurface()
         {
             SurfaceUtilities.OnSurfaceCreated();
-        
-    #if UNITY_ANDROID
+
+#if UNITY_ANDROID
             AndroidJavaClass javaUnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             mCurrentActivity = javaUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
             if (mCurrentActivity != null)
             {
                 mJavaOrientationUtility = new AndroidJavaClass("com.vuforia.VuforiaUnityPlayer.OrientationUtility");
             }
-    #endif
+#endif
 
             ResetUnityScreenOrientation();
             CheckOrientation();
@@ -198,7 +196,7 @@ namespace Vuforia
             {
                 // mScreenOrientation remains at the value reported by Unity even when the activity reports a different one
                 // otherwise the check for orientation changes will return true every frame.
-                int correctScreenOrientation = (int) mScreenOrientation;
+                int correctScreenOrientation = (int)mScreenOrientation;
 
 #if UNITY_ANDROID
                 if (mCurrentActivity != null)
@@ -209,14 +207,14 @@ namespace Vuforia
                     if (activityOrientation != 0)
                         correctScreenOrientation = activityOrientation;
                 }
-    #endif
-                ScreenOrientation javaScreenOrientation = (ScreenOrientation) correctScreenOrientation;
+#endif
+                ScreenOrientation javaScreenOrientation = (ScreenOrientation)correctScreenOrientation;
                 if (javaScreenOrientation != mJavaScreenOrientation)
                 {
                     mJavaScreenOrientation = javaScreenOrientation;
                     SurfaceUtilities.SetSurfaceOrientation(mJavaScreenOrientation);
                 }
-            
+
                 mFramesSinceLastJavaOrientationCheck = 0;
             }
             else
@@ -225,6 +223,6 @@ namespace Vuforia
             }
         }
 
-        #endregion // PRIVATE_METHODS
+        #endregion PRIVATE_METHODS
     }
 }

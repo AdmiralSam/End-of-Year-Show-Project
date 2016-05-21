@@ -1,30 +1,29 @@
 Shader "DepthMask" {
-   
-    SubShader {
-        // Render the mask after regular geometry, but before masked geometry and
-        // transparent things.
-       
-        Tags {"Queue" = "Geometry-10" }
-       
-        // Turn off lighting, because it's expensive and the thing is supposed to be
-        // invisible anyway.
-       
-        Lighting Off
+	SubShader{
+		// Render the mask after regular geometry, but before masked geometry and
+		// transparent things.
 
-        // Draw into the depth buffer in the usual way.  This is probably the default,
-        // but it doesn't hurt to be explicit.
+		Tags {"Queue" = "Geometry-10" }
 
-        ZTest LEqual
-        ZWrite On
+		// Turn off lighting, because it's expensive and the thing is supposed to be
+		// invisible anyway.
 
-        // Don't draw anything into the RGBA channels. This is an undocumented
-        // argument to ColorMask which lets us avoid writing to anything except
-        // the depth buffer.
+		Lighting Off
 
-        ColorMask 0
+		// Draw into the depth buffer in the usual way.  This is probably the default,
+		// but it doesn't hurt to be explicit.
 
-        // Do nothing specific in the pass:
+		ZTest LEqual
+		ZWrite On
 
-        Pass {}
-    }
+		// Don't draw anything into the RGBA channels. This is an undocumented
+		// argument to ColorMask which lets us avoid writing to anything except
+		// the depth buffer.
+
+		ColorMask 0
+
+		// Do nothing specific in the pass:
+
+		Pass {}
+	}
 }

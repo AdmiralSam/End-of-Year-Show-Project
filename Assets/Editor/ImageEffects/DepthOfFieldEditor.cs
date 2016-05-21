@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEditor.AnimatedValues;
 using UnityEngine;
@@ -6,42 +5,45 @@ using UnityEngine;
 namespace UnityStandardAssets.ImageEffects
 {
     [CustomEditor(typeof(DepthOfField))]
-    class DepthOfFieldEditor : Editor
+    internal class DepthOfFieldEditor : Editor
     {
-        SerializedObject serObj;
+        private SerializedObject serObj;
 
-        SerializedProperty visualizeFocus;
-        SerializedProperty focalLength;
-        SerializedProperty focalSize;
-        SerializedProperty aperture;
-        SerializedProperty focalTransform;
-        SerializedProperty maxBlurSize;
-        SerializedProperty highResolution;
+        private SerializedProperty visualizeFocus;
+        private SerializedProperty focalLength;
+        private SerializedProperty focalSize;
+        private SerializedProperty aperture;
+        private SerializedProperty focalTransform;
+        private SerializedProperty maxBlurSize;
+        private SerializedProperty highResolution;
 
-        SerializedProperty blurType;
-        SerializedProperty blurSampleCount;
+        private SerializedProperty blurType;
+        private SerializedProperty blurSampleCount;
 
-        SerializedProperty nearBlur;
-        SerializedProperty foregroundOverlap;
+        private SerializedProperty nearBlur;
+        private SerializedProperty foregroundOverlap;
 
-        SerializedProperty dx11BokehThreshold;
-        SerializedProperty dx11SpawnHeuristic;
-        SerializedProperty dx11BokehTexture;
-        SerializedProperty dx11BokehScale;
-        SerializedProperty dx11BokehIntensity;
+        private SerializedProperty dx11BokehThreshold;
+        private SerializedProperty dx11SpawnHeuristic;
+        private SerializedProperty dx11BokehTexture;
+        private SerializedProperty dx11BokehScale;
+        private SerializedProperty dx11BokehIntensity;
 
-        AnimBool showFocalDistance = new AnimBool();
-        AnimBool showDiscBlurSettings = new AnimBool();
-        AnimBool showDX11BlurSettings = new AnimBool();
-        AnimBool showNearBlurOverlapSize = new AnimBool();
+        private AnimBool showFocalDistance = new AnimBool();
+        private AnimBool showDiscBlurSettings = new AnimBool();
+        private AnimBool showDX11BlurSettings = new AnimBool();
+        private AnimBool showNearBlurOverlapSize = new AnimBool();
 
-        bool useFocalDistance { get { return focalTransform.objectReferenceValue == null; } }
-        bool useDiscBlur { get { return blurType.enumValueIndex < 1; } }
-        bool useDX11Blur { get { return blurType.enumValueIndex > 0; } }
-        bool useNearBlur { get { return nearBlur.boolValue; } }
+        private bool useFocalDistance
+        { get { return focalTransform.objectReferenceValue == null; } }
+        private bool useDiscBlur
+        { get { return blurType.enumValueIndex < 1; } }
+        private bool useDX11Blur
+        { get { return blurType.enumValueIndex > 0; } }
+        private bool useNearBlur
+        { get { return nearBlur.boolValue; } }
 
-
-        void OnEnable()
+        private void OnEnable()
         {
             serObj = new SerializedObject(target);
 
@@ -69,7 +71,7 @@ namespace UnityStandardAssets.ImageEffects
             InitializedAnimBools();
         }
 
-        void InitializedAnimBools()
+        private void InitializedAnimBools()
         {
             showFocalDistance.valueChanged.AddListener(Repaint);
             showFocalDistance.value = useFocalDistance;
@@ -84,15 +86,13 @@ namespace UnityStandardAssets.ImageEffects
             showNearBlurOverlapSize.value = useNearBlur;
         }
 
-
-        void UpdateAnimBoolTargets()
+        private void UpdateAnimBoolTargets()
         {
             showFocalDistance.target = useFocalDistance;
             showDiscBlurSettings.target = useDiscBlur;
             showDX11BlurSettings.target = useDX11Blur;
             showNearBlurOverlapSize.target = useNearBlur;
         }
-
 
         public override void OnInspectorGUI()
         {

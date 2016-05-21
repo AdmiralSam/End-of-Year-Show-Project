@@ -67,7 +67,6 @@ namespace Vuforia
             return gameObject.AddComponent<ObjectTargetBehaviour>();
         }
 
-
-        #endregion // PUBLIC_METHODS
+        #endregion PUBLIC_METHODS
     }
 }

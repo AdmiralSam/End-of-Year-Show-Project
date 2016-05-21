@@ -13,10 +13,9 @@ namespace Vuforia
     /// </summary>
     public class TurnOffBehaviour : TurnOffAbstractBehaviour
     {
-
         #region UNITY_MONOBEHAVIOUR_METHODS
 
-        void Awake()
+        private void Awake()
         {
             if (VuforiaRuntimeUtilities.IsVuforiaEnabled())
             {
@@ -29,7 +28,6 @@ namespace Vuforia
             }
         }
 
-        #endregion // UNITY_MONOBEHAVIOUR_METHODS
-
+        #endregion UNITY_MONOBEHAVIOUR_METHODS
     }
 }

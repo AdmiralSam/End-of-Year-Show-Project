@@ -8,7 +8,7 @@ namespace Vuforia
 {
     /// <summary>
     /// This Monobehaviour supplements the ReconstructionAbstractBehaviour with target initialization specific functionality
-    /// </summary> 
+    /// </summary>
     public class ReconstructionFromTargetBehaviour : ReconstructionFromTargetAbstractBehaviour
     {
     }

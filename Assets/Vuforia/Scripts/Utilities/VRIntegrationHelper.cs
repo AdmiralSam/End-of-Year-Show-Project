@@ -1,12 +1,10 @@
 /*===============================================================================
-Copyright (c) 2015-2016 PTC Inc. All Rights Reserved. Confidential and Proprietary - 
+Copyright (c) 2015-2016 PTC Inc. All Rights Reserved. Confidential and Proprietary -
 Protected under copyright and other laws.
-Vuforia is a trademark of PTC Inc., registered in the United States and other 
-countries.   
+Vuforia is a trademark of PTC Inc., registered in the United States and other
+countries.
 ===============================================================================*/
 
-
-using System;
 using UnityEngine;
 
 using Vuforia;
@@ -31,17 +29,17 @@ public class VRIntegrationHelper : MonoBehaviour
     public bool IsLeft;
     public Transform TrackableParent;
 
-    void Awake()
+    private void Awake()
     {
         GetComponent<Camera>().fieldOfView = 90f;
     }
 
-    void Start()
+    private void Start()
     {
         VuforiaBehaviour.Instance.RegisterVuforiaStartedCallback(OnVuforiaStarted);
     }
 
-    void OnVuforiaStarted()
+    private void OnVuforiaStarted()
     {
         mLeftCamera = DigitalEyewearBehaviour.Instance.PrimaryCamera;
         mRightCamera = DigitalEyewearBehaviour.Instance.SecondaryCamera;
@@ -50,7 +48,7 @@ public class VRIntegrationHelper : MonoBehaviour
         mRightExcessAreaBehaviour = mRightCamera.GetComponent<HideExcessAreaAbstractBehaviour>();
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         // to this only once per frame, not for both cameras
         if (IsLeft)
@@ -113,7 +111,7 @@ public class VRIntegrationHelper : MonoBehaviour
     }
 
     // OnPreRender is called once per camera each frame
-    void OnPreRender()
+    private void OnPreRender()
     {
         // on pre render is where projection matrix and pixel rect are set up correctly (for each camera individually)
         // so we use this to acquire this data.
@@ -128,7 +126,6 @@ public class VRIntegrationHelper : MonoBehaviour
             mRightCameraMatrixOriginal = mRightCamera.projectionMatrix;
             mRightCameraPixelRect = mRightCamera.pixelRect;
             mRightCameraDataAcquired = true;
-
         }
     }
 }

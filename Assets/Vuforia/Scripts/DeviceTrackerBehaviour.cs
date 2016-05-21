@@ -14,5 +14,4 @@ namespace Vuforia
     public class DeviceTrackerBehaviour : DeviceTrackerAbstractBehaviour
     {
     }
-
 }
