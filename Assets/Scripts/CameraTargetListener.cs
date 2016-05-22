@@ -4,27 +4,51 @@ using UnityEngine.UI;
 public class CameraTargetListener : MonoBehaviour, ITargetListener
 {
     public Text DebugText;
+    public MinigameController controller;
+    public float MaximumDistance;
+    public float MaximumAngle;
     private int messageCount;
+    private bool inRange;
 
     public void TargetEnteredView(string target)
     {
-        DebugText.text = string.Format("{0}: {1} has entered", messageCount++, target);
-        GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator>().Open();
     }
 
     public void TargetLeftView(string target)
     {
-        DebugText.text = string.Format("{0}: {1} has left", messageCount++, target);
-        GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator>().Close();
+        if (inRange)
+        {
+            controller.LeftTarget(target);
+            inRange = false;
+        }
     }
 
     public void TargetMoved(string target, Vector3 location)
     {
-        DebugText.text = string.Format("{0}: {1} is at {2}", messageCount++, target, location);
+        float angle = Vector3.Angle(location, Vector3.forward);
+        bool withinDistance = location.sqrMagnitude < MaximumDistance * MaximumDistance;
+        bool withinAngle = angle < MaximumAngle;
+        if (withinDistance && withinAngle)
+        {
+            if (!inRange)
+            {
+                controller.EnteredTarget(target);
+                inRange = true;
+            }
+        }
+        else
+        {
+            if (inRange)
+            {
+                controller.LeftTarget(target);
+                inRange = false;
+            }
+        }
     }
 
     public void EnterDimension()
     {
+        controller.EnteredDimension();
     }
 
     private void Start()
