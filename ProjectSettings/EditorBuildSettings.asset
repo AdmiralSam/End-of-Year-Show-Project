@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/MainScene.unity
+    path: Assets/EOYS Assets/Scenes/MainScene.unity
   - enabled: 0
-    path: Assets/OLDGhostShooter.unity
+    path: Assets/EOYS Assets/Scenes/OLDGhostShooter.unity
   - enabled: 1
-    path: Assets/GhostShooter.unity
+    path: Assets/EOYS Assets/Scenes/GhostShooter.unity

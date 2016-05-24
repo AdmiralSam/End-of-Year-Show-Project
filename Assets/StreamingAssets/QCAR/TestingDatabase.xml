@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="Nisekoi3" size="5.000000 5.000000" />
+    <ImageTarget name="Nisekoi1" size="5.000000 5.000000" />
+    <ImageTarget name="Eromanga6" size="5.000000 5.000000" />
+    <ImageTarget name="Eromanga5" size="5.000000 5.000000" />
+    <ImageTarget name="Eromanga4" size="5.000000 5.000000" />
+    <ImageTarget name="Eromanga3" size="5.000000 5.000000" />
+    <ImageTarget name="Eromanga2" size="5.000000 5.000000" />
+    <ImageTarget name="Eromanga1" size="5.000000 5.000000" />
+  </Tracking>
+</QCARConfig>
