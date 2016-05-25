@@ -7,7 +7,6 @@ public class CameraTargetListener : MonoBehaviour, ITargetListener
     public MinigameController controller;
     public float MaximumDistance;
     public float MaximumAngle;
-    private int messageCount;
     private bool inRange;
 
     public void TargetEnteredView(string target)
@@ -26,6 +25,7 @@ public class CameraTargetListener : MonoBehaviour, ITargetListener
     public void TargetMoved(string target, Vector3 location)
     {
         float angle = Vector3.Angle(location, Vector3.forward);
+        DebugText.text = "Angle: " + angle;
         bool withinDistance = location.sqrMagnitude < MaximumDistance * MaximumDistance;
         bool withinAngle = angle < MaximumAngle;
         if (withinDistance && withinAngle)
@@ -53,7 +53,6 @@ public class CameraTargetListener : MonoBehaviour, ITargetListener
 
     private void Start()
     {
-        messageCount = 1;
     }
 
     private void Update()

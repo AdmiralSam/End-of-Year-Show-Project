@@ -8,12 +8,19 @@ public class UIOpenCloseAnimator : MonoBehaviour
     private float currentTime;
     private State currentState;
 
+    public bool StartActive;
+
+    public delegate void OnCloseListener();
+
+    public OnCloseListener OnClose;
+
     private enum State { Open, Closed, Opening, Closing }
 
     private void Start()
     {
         currentState = State.Closed;
         currentTime = 0.0f;
+        gameObject.SetActive(StartActive);
     }
 
     private void Update()
@@ -35,6 +42,10 @@ public class UIOpenCloseAnimator : MonoBehaviour
                 {
                     currentTime = 0.0f;
                     currentState = State.Closed;
+                    if (OnClose != null)
+                    {
+                        OnClose();
+                    }
                 }
                 break;
         }

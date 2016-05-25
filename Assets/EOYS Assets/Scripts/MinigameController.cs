@@ -4,6 +4,7 @@ using UnityEngine;
 public class MinigameController : MonoBehaviour
 {
     public UIOpenCloseAnimator HUD;
+    public GameObject hudCanvas;
     public ParameterizedAnimator strengthBar;
     public float StrengthChangeTime;
     private Dictionary<string, MinigameState> minigames;
@@ -27,6 +28,8 @@ public class MinigameController : MonoBehaviour
         {
             case MinigameState.Active:
                 currentState = State.GainingStrength;
+                GameObject.Find(currentMinigame).GetComponentInChildren<MinigameOpenCloseAnimator>().Open();
+                GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().GameResume();
                 break;
 
             case MinigameState.New:
@@ -39,8 +42,11 @@ public class MinigameController : MonoBehaviour
     public void EnteredDimension()
     {
         GameObject.Find(currentMinigame).GetComponentInChildren<UIOpenCloseAnimator>().Close();
+        GameObject.Find(currentMinigame).GetComponentInChildren<MinigameOpenCloseAnimator>().Open();
+        GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().GameStart();
         minigames[currentMinigame] = MinigameState.Active;
         currentState = State.GainingStrength;
+        hudCanvas.SetActive(true);
         HUD.Open();
     }
 
@@ -50,6 +56,8 @@ public class MinigameController : MonoBehaviour
         {
             case MinigameState.Active:
                 currentState = State.LosingStrength;
+                GameObject.Find(currentMinigame).GetComponentInChildren<MinigameOpenCloseAnimator>().Close();
+                GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().GamePause();
                 break;
 
             case MinigameState.New:
@@ -66,6 +74,7 @@ public class MinigameController : MonoBehaviour
         minigames["Target 2"] = MinigameState.New;
         minigames["Target 3"] = MinigameState.New;
         minigames["Target 4"] = MinigameState.New;
+        HUD.OnClose = () => hudCanvas.SetActive(false);
     }
 
     private void Update()
@@ -89,6 +98,8 @@ public class MinigameController : MonoBehaviour
                     {
                         currentStrength = 0.0f;
                         currentState = State.Neutral;
+                        GameObject.Find(currentMinigame).GetComponentInChildren<MinigameOpenCloseAnimator>().Close();
+                        GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().GameReset();
                         minigames[currentMinigame] = MinigameState.New;
                         HUD.Close();
                         currentMinigame = null;

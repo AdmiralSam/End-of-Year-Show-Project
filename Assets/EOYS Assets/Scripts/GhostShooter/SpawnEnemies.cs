@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
@@ -27,6 +28,19 @@ public class SpawnEnemies : MonoBehaviour
                 spawnTimer = 0.0f;
                 Spawn();
             }
+        }
+    }
+
+    public void Reset()
+    {
+        List<GameObject> spawned = new List<GameObject>();
+        for (int i = 0; i < miniGameTransform.childCount; i++)
+        {
+            spawned.Add(miniGameTransform.GetChild(i).gameObject);
+        }
+        foreach (GameObject child in spawned)
+        {
+            Destroy(child);
         }
     }
 

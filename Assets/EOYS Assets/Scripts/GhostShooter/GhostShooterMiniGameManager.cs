@@ -1,33 +1,36 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class GhostShooterMiniGameManager : MinigameManager
 {
     public GameTimer gameTimer;
     public ScoreKeeper scoreKeeper;
-
-    private bool gameWon;
+    public SpawnEnemies spawner;
+    public GameObject hud;
 
     public override void GamePause()
     {
         gameTimer.StopTimer();
+        hud.SetActive(false);
     }
 
     public override void GameReset()
     {
-        gameWon = false;
         gameTimer.ResetTimer();
+        scoreKeeper.Reset();
+        spawner.Reset();
+        hud.SetActive(false);
     }
 
     public override void GameResume()
     {
         gameTimer.StartTimer();
+        hud.SetActive(true);
     }
 
     public override void GameStart()
     {
-        gameWon = false;
         gameTimer.StartTimer();
+        hud.SetActive(true);
     }
 
     // Use this for initialization
@@ -38,17 +41,14 @@ public class GhostShooterMiniGameManager : MinigameManager
     // Update is called once per frame
     private void Update()
     {
-        if(gameTimer.GameTimeLeft <= 0)
+        if (gameTimer.GameTimeLeft <= 0)
         {
+            spawner.Reset();
             ShowEndGameScreen();
         }
     }
 
     private void ShowEndGameScreen()
     {
-        if (scoreKeeper.Score >= 100)
-        {
-            gameWon = true;
-        }
     }
 }
