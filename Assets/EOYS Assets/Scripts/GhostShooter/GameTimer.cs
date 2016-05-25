@@ -1,22 +1,22 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
-public class GameTimer : MonoBehaviour {
-
+public class GameTimer : MonoBehaviour
+{
     public float GameTimeLeft { get; private set; }
     public bool Paused { get; private set; }
     public Text[] timeFields;
 
     // Use this for initialization
-    void Start() {
+    private void Start()
+    {
         GameTimeLeft = 59.0f;
         Paused = true;
     }
 
     // Update is called once per frame
-    void Update() {
-
+    private void Update()
+    {
         if (!Paused)
         {
             GameTimeLeft -= Time.deltaTime;

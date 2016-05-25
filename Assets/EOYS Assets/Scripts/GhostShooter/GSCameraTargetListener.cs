@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class GSCameraTargetListener : MonoBehaviour, ITargetListener
 {
     public CanvasGroup canvas;
+
     //private int messageCount;
     private bool canSee = false;
 
@@ -20,7 +20,7 @@ public class GSCameraTargetListener : MonoBehaviour, ITargetListener
     {
         //DebugText.text = string.Format("{0}: {1} has left", messageCount++, target);
         canvas.alpha = 0f;
-        
+
         canSee = false;
         GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator>().Close();
     }
@@ -41,6 +41,5 @@ public class GSCameraTargetListener : MonoBehaviour, ITargetListener
 
     private void Update()
     {
-   
     }
 }

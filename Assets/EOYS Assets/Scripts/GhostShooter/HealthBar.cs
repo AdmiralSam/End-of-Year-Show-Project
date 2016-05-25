@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour {
-
+public class HealthBar : MonoBehaviour
+{
     public int maxHealth;
     public Image first;
     public Image second;
@@ -19,13 +18,15 @@ public class HealthBar : MonoBehaviour {
     private Color black = new Color(0.5F, 0.5F, 0.5F, 0.5F);
 
     // Use this for initialization
-    void Start () {
+    private void Start()
+    {
         CurrentHealth = maxHealth;
         setHealthBarColor(green);
     }
 
     // Update is called once per frame
-    void Update() {
+    private void Update()
+    {
         if (CurrentHealth == 0)
         {
             setHealthBarColor(black);
@@ -37,11 +38,11 @@ public class HealthBar : MonoBehaviour {
         {
             setHealthBarColor(orange);
         }
-        if (CurrentHealth <= maxHealth/3)
+        if (CurrentHealth <= maxHealth / 3)
         {
             setHealthBarColor(red);
         }
-	}
+    }
 
     public void takeDamage(int damagePoints)
     {
@@ -55,9 +56,11 @@ public class HealthBar : MonoBehaviour {
             case 1:
                 setHealthColors1(color);
                 break;
+
             case 2:
                 setHealthColors2(color);
                 break;
+
             case 3:
                 setHealthColors3(color);
                 break;
@@ -73,7 +76,7 @@ public class HealthBar : MonoBehaviour {
     }
 
     private void setHealthColors2(Color color)
-    {            
+    {
         first.color = color;
         second.color = color;
 
@@ -81,7 +84,6 @@ public class HealthBar : MonoBehaviour {
         {
             second.color = black;
         }
-
     }
 
     private void setHealthColors3(Color color)
@@ -94,7 +96,7 @@ public class HealthBar : MonoBehaviour {
         {
             third.color = black;
         }
-        if(color == red)
+        if (color == red)
         {
             second.color = black;
             third.color = black;
