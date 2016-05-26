@@ -5,6 +5,8 @@ public class GameTimer : MonoBehaviour
 {
     public float GameTimeLeft { get; private set; }
     public bool Paused { get; private set; }
+    public static bool Finished { get; private set; }
+
     public Text[] timeFields;
 
     // Use this for initialization
@@ -12,6 +14,7 @@ public class GameTimer : MonoBehaviour
     {
         GameTimeLeft = 59.0f;
         Paused = true;
+        Finished = false;
     }
 
     // Update is called once per frame
@@ -24,6 +27,7 @@ public class GameTimer : MonoBehaviour
             if (GameTimeLeft < 0)
             {
                 GameTimeLeft = 0;
+                Finished = true;
             }
         }
         foreach (Text text in timeFields)
@@ -46,5 +50,6 @@ public class GameTimer : MonoBehaviour
     {
         GameTimeLeft = 59.0f;
         Paused = true;
+        Finished = false;
     }
 }

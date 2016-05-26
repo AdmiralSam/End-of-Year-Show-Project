@@ -44,11 +44,6 @@ public class GhostShooterMiniGameManager : MinigameManager
         if (gameTimer.GameTimeLeft <= 0)
         {
             spawner.Reset();
-            ShowEndGameScreen();
         }
-    }
-
-    private void ShowEndGameScreen()
-    {
     }
 }
