@@ -4,6 +4,7 @@ using UnityEngine;
 public class BossMinigameManager : MinigameManager
 {
     public BossBehaviorSwitcher boss;
+    public Animator unityChan;
     public PlayerHit hit;
     public PlayerController player;
     public WaitTimeBeforeGame beforeTimer;
@@ -37,6 +38,7 @@ public class BossMinigameManager : MinigameManager
         currentState = State.Idle;
         display.PanelActivation(false, false);
         display.Reset();
+        boss.ResetPosition();
     }
 
     public override void GameResume()
@@ -71,8 +73,9 @@ public class BossMinigameManager : MinigameManager
         result = GameState.Won;
         afterTimer.StartCountDown();
         display.PanelActivation(true, true);
-        boss.Pause();
+        boss.Reset();
         player.Reset();
+        unityChan.CrossFade("LOSE00", 0.3f);
     }
 
     private void PlayerDied()
