@@ -2,7 +2,7 @@
 
 public class GhostShooterMiniGameManager : MinigameManager
 {
-    public DisplayGameResult Display;
+    public DisplayGameResults Display;
     public GameTimer gameTimer;
     public GameObject hud;
     public ScoreKeeper scoreKeeper;
@@ -59,7 +59,7 @@ public class GhostShooterMiniGameManager : MinigameManager
         {
             GameRunning = false;
             spawner.Reset();
-            Display.PanelActivation(true, won);
+			Display.ShowGameResult (won);
             gameTimer.StopTimer();
             result = won ? GameState.Won : GameState.Lost;
             WaitAfterGame.StartCountDown();
@@ -86,13 +86,4 @@ public class GhostShooterMiniGameManager : MinigameManager
         gameTimer.StartTimer();
         GameRunning = true;
     }
-
-    // Update is called once per frame
-    /*private void Update()
-    {
-        if (gameTimer.GameTimeLeft <= 0)
-        {
-            spawner.Reset();
-        }
-    }*/
 }

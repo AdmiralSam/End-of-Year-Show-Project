@@ -4,13 +4,11 @@ using UnityEngine.UI;
 public class GameTimer : MonoBehaviour
 {
     public Text[] timeFields;
-    private float totalGameTime = 59.0f;
+	public float totalGameTime;
 
     public delegate void OnTimerFinished();
 
     public float GameTimeLeft { get; private set; }
-
-    //Call listener(GameState.Won) or listener(GameState.Lost) when they won or lost
     public OnTimerFinished Listener { private get; set; }
 
     public bool Paused { get; private set; }
