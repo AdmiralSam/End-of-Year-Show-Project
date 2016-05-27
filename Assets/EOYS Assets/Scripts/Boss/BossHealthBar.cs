@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class BossHealthBar : MonoBehaviour {
+public class BossHealthBar : MonoBehaviour
+{
     public Image HealthBar1, HealthBar2, HealthBar3;
+
     public delegate void OnStageDepleted(int stage);
+
     public OnStageDepleted Listener;
     private int health;
     private readonly Color green = new Color32(46, 204, 113, 255);
@@ -28,13 +31,15 @@ public class BossHealthBar : MonoBehaviour {
             {
                 Listener(1);
             }
-        } else if (health > 100 && health - damage <= 100)
+        }
+        else if (health > 100 && health - damage <= 100)
         {
             if (Listener != null)
             {
                 Listener(2);
             }
-        } else if (health - damage <= 0)
+        }
+        else if (health - damage <= 0)
         {
             if (Listener != null)
             {
@@ -62,7 +67,8 @@ public class BossHealthBar : MonoBehaviour {
             HealthBar1.fillAmount = intermediateHealth / 100.0f;
             HealthBar2.fillAmount = 1.0f;
             HealthBar3.fillAmount = 1.0f;
-        } else if (health >= 100)
+        }
+        else if (health >= 100)
         {
             HealthBar2.color = currentColor;
             HealthBar1.color = green;
@@ -70,7 +76,8 @@ public class BossHealthBar : MonoBehaviour {
             HealthBar1.fillAmount = 0.0f;
             HealthBar2.fillAmount = intermediateHealth / 100.0f;
             HealthBar3.fillAmount = 1.0f;
-        } else
+        }
+        else
         {
             HealthBar1.color = currentColor;
 

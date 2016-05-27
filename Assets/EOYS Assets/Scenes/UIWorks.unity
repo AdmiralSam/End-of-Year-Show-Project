@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1135959a4222d894da7d653999a021d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 607340387}
+  timeFields: []
 --- !u!225 &607340386
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1488,6 +1488,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugText: {fileID: 1216831346}
+  controller: {fileID: 0}
+  MaximumDistance: 0
+  MaximumAngle: 0
 --- !u!1 &2031349794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,7 +1655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1135959a4222d894da7d653999a021d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 2043225003}
+  timeFields: []
 --- !u!114 &2043225003
 MonoBehaviour:
   m_ObjectHideFlags: 0
