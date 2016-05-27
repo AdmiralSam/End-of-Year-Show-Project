@@ -5,7 +5,6 @@ public class SpawnEnemies : MonoBehaviour
 {
     public Transform[] enemyPrefabs;
     public float enemyScale;
-    public GameTimer gameTimer;
     public Transform miniGameTransform;
     public float spawnTime;
     private bool spawnEnemies;

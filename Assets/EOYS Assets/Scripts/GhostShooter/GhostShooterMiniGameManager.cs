@@ -7,6 +7,7 @@ public class GhostShooterMiniGameManager : MinigameManager
     public GameObject hud;
     public ScoreKeeper scoreKeeper;
     public SpawnEnemies spawner;
+	public Player player;
 
     public WaitTimeAfterGame WaitAfterGame;
     public WaitTimeBeforeGame WaitBeforeGame;
