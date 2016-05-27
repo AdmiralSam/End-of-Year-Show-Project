@@ -61,6 +61,14 @@ public class MinigameController : MonoBehaviour
         GameObject.Find(currentMinigame).GetComponentInChildren<MinigameOpenCloseAnimator>().Close();
         GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().GameReset();
         minigames[currentMinigame] = state == MinigameManager.GameState.Won ? MinigameState.Finished : MinigameState.New;
+        if (state == MinigameManager.GameState.Won)
+        {
+            GameObject.Find(currentMinigame).GetComponentInChildren<UIOpenCloseAnimator2>().Open();
+        }
+        else
+        {
+            GameObject.Find(currentMinigame).GetComponentInChildren<UIOpenCloseAnimator>().Open();
+        }
         HUD.Close();
         currentMinigame = null;
     }
