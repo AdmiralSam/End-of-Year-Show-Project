@@ -9,6 +9,9 @@ public class BallController : MonoBehaviour
     private Vector3 velocity;
     private bool running;
 
+	public delegate void OnBallDied ();
+	public OnBallDied Listener { private get; set; }
+
     private void Start()
     {
         velocity = Vector3.up;
@@ -36,7 +39,9 @@ public class BallController : MonoBehaviour
             }
             if (transform.localPosition.y >= 1.0f)
             {
-                GetComponentInParent<PongGameMiniGameManager>().GameEnd();
+				if (Listener != null) {
+					Listener ();
+				}
             }
         }
     }

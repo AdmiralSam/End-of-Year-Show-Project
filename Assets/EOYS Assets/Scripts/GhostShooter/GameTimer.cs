@@ -13,7 +13,7 @@ public class GameTimer : MonoBehaviour
 
     public Text[] timeFields;
 
-    private float totalGameTime = 10.0f;
+    private float totalGameTime = 59.0f;
 
     // Use this for initialization
     private void Start()

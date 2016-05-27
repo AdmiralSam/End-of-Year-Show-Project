@@ -9,9 +9,12 @@ public class PongGameMiniGameManager : MinigameManager
 
     public GameTimer PongGameTimer;
     public WaitTimeBeforeGame WaitBeforeGame;
+	public WaitTimeAfterGame WaitAfterGame;
     public GameObject AllGameObjectsContainer;
     public BallController PongBallController;
     public DisplayGameResult Display;
+
+	private GameState result;
 
     public override void GamePause()
     {
@@ -24,6 +27,7 @@ public class PongGameMiniGameManager : MinigameManager
         GameRunning = false;
         PongGameTimer.ResetTimer();
         WaitBeforeGame.ResetWait();
+		WaitAfterGame.ResetWait();
         PongBallController.ResetBall();
     }
 
@@ -42,15 +46,12 @@ public class PongGameMiniGameManager : MinigameManager
         PongBallController.gameObject.SetActive(true);
     }
 
-    public void GameEnd()
-    {
-        BallDied();
-    }
-
     private void Start()
     {
         WaitBeforeGame.Listener = WaitFinished;
-        PongGameTimer.Listener = GameFinished;
+		PongGameTimer.Listener = () => GameEnded(true);
+		PongBallController.Listener = () => GameEnded(false);
+		WaitAfterGame.Listener = WaitAfterFinished;
     }
 
     private void WaitFinished()
@@ -61,25 +62,20 @@ public class PongGameMiniGameManager : MinigameManager
         PongBallController.StartBallMovement();
     }
 
-    private void GameFinished()
-    {
-        if (GameRunning)
-        {
-            Display.PanelActivation(true, true);
-            GameRunning = false;
-            PongGameTimer.StopTimer();
-            AllGameObjectsContainer.gameObject.SetActive(false);
-        }
-    }
+	private void WaitAfterFinished()
+	{
+		Listener(result);
+	}
 
-    private void BallDied()
-    {
-        if (GameRunning)
-        {
-            Display.PanelActivation(true, false);
-            GameRunning = false;
-            PongGameTimer.StopTimer();
-            AllGameObjectsContainer.gameObject.SetActive(false);
-        }
-    }
+	private void GameEnded(bool won) {
+		if (GameRunning)
+		{
+			Display.PanelActivation(true, won);
+			GameRunning = false;
+			PongGameTimer.StopTimer();
+			AllGameObjectsContainer.gameObject.SetActive(false);
+			result = won ? GameState.Won : GameState.Lost;
+			WaitAfterGame.StartCountDown();
+		}
+	}
 }

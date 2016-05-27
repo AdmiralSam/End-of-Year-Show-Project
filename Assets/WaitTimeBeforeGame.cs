@@ -11,8 +11,6 @@ public class WaitTimeBeforeGame : MonoBehaviour {
     private float timeLeft;
 
     public delegate void OnTimerFinished();
-
-    //Call listener(GameState.Won) or listener(GameState.Lost) when they won or lost
     public OnTimerFinished Listener { private get; set; }
 
     public void StartCountDown()
@@ -47,7 +45,11 @@ public class WaitTimeBeforeGame : MonoBehaviour {
         if(timeLeft <= 0.0f)
         {
             CountDown = false;
-            Listener();
+
+			if (Listener != null) 
+			{
+				Listener ();
+			}
         }
 	}
 }
