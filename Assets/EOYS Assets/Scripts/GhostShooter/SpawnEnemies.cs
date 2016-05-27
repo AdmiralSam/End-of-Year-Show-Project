@@ -3,49 +3,17 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
-    public GameTimer gameTimer;
     public Transform[] enemyPrefabs;
     public float enemyScale;
-    public float spawnTime;
+    public GameTimer gameTimer;
     public Transform miniGameTransform;
-
+    public float spawnTime;
+    private bool spawnEnemies;
     private float spawnTimer;
-	private bool spawnEnemies;
-
-    // Use this for initialization
-    private void Start()
-    {
-		spawnTimer = spawnTime;
-		spawnEnemies = false;
-    }
-
-	public void StartSpawningEnemies()
-	{
-		spawnEnemies = true;
-	}
-
-	public void StopSpawningEnemies()
-	{
-		spawnEnemies = false;
-	}
-
-    // Update is called once per frame
-    private void Update()
-    {
-		if (spawnEnemies) 
-		{
-			spawnTimer -= Time.deltaTime;
-			if (spawnTimer  <= 0.0f) 
-			{
-				spawnTimer = spawnTime;
-				Spawn ();
-			}
-		}
-    }
 
     public void Reset()
     {
-		spawnEnemies = false;
+        spawnEnemies = false;
         List<GameObject> spawned = new List<GameObject>();
 
         for (int i = 0; i < miniGameTransform.childCount; i++)
@@ -58,6 +26,16 @@ public class SpawnEnemies : MonoBehaviour
         }
     }
 
+    public void StartSpawningEnemies()
+    {
+        spawnEnemies = true;
+    }
+
+    public void StopSpawningEnemies()
+    {
+        spawnEnemies = false;
+    }
+
     private void Spawn()
     {
         int enemyIndex = Random.Range(0, enemyPrefabs.Length);
@@ -68,5 +46,26 @@ public class SpawnEnemies : MonoBehaviour
         enemy.localRotation = Quaternion.identity;
         enemy.localScale = new Vector3(enemyScale, enemyScale, enemyScale);
         enemy.gameObject.SetActive(true);
+    }
+
+    // Use this for initialization
+    private void Start()
+    {
+        spawnTimer = spawnTime;
+        spawnEnemies = false;
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+        if (spawnEnemies)
+        {
+            spawnTimer -= Time.deltaTime;
+            if (spawnTimer <= 0.0f)
+            {
+                spawnTimer = spawnTime;
+                Spawn();
+            }
+        }
     }
 }

@@ -2,24 +2,23 @@
 
 public class GhostShooterMiniGameManager : MinigameManager
 {
+    public DisplayGameResult Display;
     public GameTimer gameTimer;
     public GameObject hud;
     public ScoreKeeper scoreKeeper;
     public SpawnEnemies spawner;
 
-	public WaitTimeBeforeGame WaitBeforeGame;
-	public WaitTimeAfterGame WaitAfterGame;
-	public DisplayGameResult Display;
-
-	public static bool GameRunning { private set; get; }
-	private GameState result;
+    public WaitTimeAfterGame WaitAfterGame;
+    public WaitTimeBeforeGame WaitBeforeGame;
+    private GameState result;
+    public static bool GameRunning { private set; get; }
 
     public override void GamePause()
     {
         gameTimer.StopTimer();
         hud.SetActive(false);
-		GameRunning = false;
-		spawner.StopSpawningEnemies ();
+        GameRunning = false;
+        spawner.StopSpawningEnemies();
     }
 
     public override void GameReset()
@@ -29,63 +28,64 @@ public class GhostShooterMiniGameManager : MinigameManager
         spawner.Reset();
         hud.SetActive(false);
 
-		Display.Reset ();
-		WaitAfterGame.ResetWait();
-		WaitBeforeGame.ResetWait();
-		spawner.StopSpawningEnemies ();
-		GameRunning = false;
+        Display.Reset();
+        WaitAfterGame.ResetWait();
+        WaitBeforeGame.ResetWait();
+        spawner.StopSpawningEnemies();
+        GameRunning = false;
     }
 
     public override void GameResume()
     {
         gameTimer.StartTimer();
         hud.SetActive(true);
-		spawner.StartSpawningEnemies ();
-		GameRunning = true;
+        spawner.StartSpawningEnemies();
+        GameRunning = true;
     }
 
     public override void GameStart()
     {
-		WaitBeforeGame.GetComponent<UIOpenCloseAnimator>().Open ();
-		WaitBeforeGame.StartCountDown();
-		spawner.StopSpawningEnemies ();
+        WaitBeforeGame.GetComponent<UIOpenCloseAnimator>().Open();
+        WaitBeforeGame.StartCountDown();
+        spawner.StopSpawningEnemies();
 
         //gameTimer.StartTimer();
         hud.SetActive(true);
     }
 
+    private void GameEnded(bool won)
+    {
+        if (GameRunning)
+        {
+            GameRunning = false;
+            spawner.Reset();
+            Display.PanelActivation(true, won);
+            gameTimer.StopTimer();
+            result = won ? GameState.Won : GameState.Lost;
+            WaitAfterGame.StartCountDown();
+        }
+    }
+
     // Use this for initialization
     private void Start()
     {
-		WaitBeforeGame.Listener = WaitFinished;
-		WaitAfterGame.Listener = WaitAfterFinished;
-		gameTimer.Listener = () => GameEnded (scoreKeeper.Score >= scoreKeeper.ScoreToWin);
+        WaitBeforeGame.Listener = WaitFinished;
+        WaitAfterGame.Listener = WaitAfterFinished;
+        gameTimer.Listener = () => GameEnded(scoreKeeper.Score >= scoreKeeper.ScoreToWin);
     }
 
-	private void WaitFinished()
-	{
-		WaitBeforeGame.GetComponent<UIOpenCloseAnimator>().Close ();
-		spawner.StartSpawningEnemies ();
-		gameTimer.StartTimer();
-		GameRunning = true;
-	}
+    private void WaitAfterFinished()
+    {
+        Listener(result);
+    }
 
-	private void WaitAfterFinished()
-	{
-		Listener(result);
-	}
-
-	private void GameEnded(bool won) {
-		if (GameRunning)
-		{
-			GameRunning = false;
-			spawner.Reset();
-			Display.PanelActivation(true, won);
-			gameTimer.StopTimer();
-			result = won ? GameState.Won : GameState.Lost;
-			WaitAfterGame.StartCountDown();
-		}
-	}
+    private void WaitFinished()
+    {
+        WaitBeforeGame.GetComponent<UIOpenCloseAnimator>().Close();
+        spawner.StartSpawningEnemies();
+        gameTimer.StartTimer();
+        GameRunning = true;
+    }
 
     // Update is called once per frame
     /*private void Update()

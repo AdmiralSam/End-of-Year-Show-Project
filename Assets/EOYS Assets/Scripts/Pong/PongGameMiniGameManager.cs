@@ -21,7 +21,7 @@ public class PongGameMiniGameManager : MinigameManager
 
     public override void GameReset()
     {
-		Display.Reset ();
+        Display.Reset();
         GameRunning = false;
         PongGameTimer.ResetTimer();
         WaitBeforeGame.ResetWait();
@@ -37,7 +37,7 @@ public class PongGameMiniGameManager : MinigameManager
 
     public override void GameStart()
     {
-		WaitBeforeGame.GetComponent<UIOpenCloseAnimator> ().Open ();
+        WaitBeforeGame.GetComponent<UIOpenCloseAnimator>().Open();
         WaitBeforeGame.StartCountDown();
         GameRunning = false;
         AllGameObjectsContainer.SetActive(true);
@@ -72,7 +72,7 @@ public class PongGameMiniGameManager : MinigameManager
 
     private void WaitFinished()
     {
-		WaitBeforeGame.GetComponent<UIOpenCloseAnimator>().Close ();
+        WaitBeforeGame.GetComponent<UIOpenCloseAnimator>().Close();
         GameRunning = true;
         PongGameTimer.StartTimer();
         PongBallController.StartBallMovement();

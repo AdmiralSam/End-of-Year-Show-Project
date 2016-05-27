@@ -124,7 +124,7 @@ public class MinigameController : MonoBehaviour
                     if (currentStrength < 0.0f)
                     {
                         GameEnded(MinigameManager.GameState.Lost);
-						currentMinigame = null;
+                        currentMinigame = null;
                     }
                     break;
             }
