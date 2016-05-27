@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class StarCircleBehavior : MonoBehaviour
 {
-    public VelocityMove bullet;
-    public Transform bulletParent;
+    public BulletPool pool;
     public float radius;
     public float setupTime;
     public float speed;
@@ -28,10 +27,7 @@ public class StarCircleBehavior : MonoBehaviour
     public void Pause()
     {
         running = false;
-        foreach (VelocityMove velocityMove in bulletParent.GetComponentsInChildren<VelocityMove>())
-        {
-            velocityMove.Pause();
-        }
+        pool.Pause();
     }
 
     public void Reset()
@@ -39,24 +35,13 @@ public class StarCircleBehavior : MonoBehaviour
         currentState = State.Idle;
         time = 0.0f;
         running = true;
-        List<GameObject> bullets = new List<GameObject>();
-        foreach (Transform child in bulletParent)
-        {
-            bullets.Add(child.gameObject);
-        }
-        foreach (GameObject bullet in bullets)
-        {
-            Destroy(bullet);
-        }
+        pool.Reset();
     }
 
     public void Resume()
     {
         running = true;
-        foreach (VelocityMove velocityMove in bulletParent.GetComponentsInChildren<VelocityMove>())
-        {
-            velocityMove.Resume();
-        }
+        pool.Resume();
     }
 
     private float DistanceAtRadiusWithAngle(float radius, float angle)
@@ -86,8 +71,7 @@ public class StarCircleBehavior : MonoBehaviour
             {
                 float horizontalAngle = (float)j / numberInRing * 2 * Mathf.PI;
                 Vector3 target = new Vector3(radius * Mathf.Cos(horizontalAngle), radius * Mathf.Sin(horizontalAngle), Mathf.Cos(angle));
-                VelocityMove spawnedBullet = Instantiate(bullet);
-                spawnedBullet.transform.parent = bulletParent;
+                VelocityMove spawnedBullet = pool.GetBullet();
                 spawnedBullet.transform.localPosition = transform.localPosition;
                 spawnedBullet.velocity = speed * target.normalized;
             }

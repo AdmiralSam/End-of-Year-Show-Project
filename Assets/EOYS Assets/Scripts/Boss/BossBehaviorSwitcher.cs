@@ -71,12 +71,4 @@ public class BossBehaviorSwitcher : MonoBehaviour
         coneShootBehavior = GetComponent<ConeShootBehavior>();
         starCircleBehavior = GetComponent<StarCircleBehavior>();
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.name.Contains("Player"))
-        {
-            healthBar.TakeDamage(1);
-        }
-    }
 }

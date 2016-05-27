@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public VelocityMove bullet;
-    public Transform bulletParent;
+    public BulletPool pool;
     public Transform Probe;
     public Transform Probe2;
 
@@ -28,10 +27,7 @@ public class PlayerController : MonoBehaviour
     public void Pause()
     {
         running = false;
-        foreach (VelocityMove velocityMove in bulletParent.GetComponentsInChildren<VelocityMove>())
-        {
-            velocityMove.Pause();
-        }
+        pool.Pause();
     }
 
     public void Reset()
@@ -40,23 +36,13 @@ public class PlayerController : MonoBehaviour
         time = 0.0f;
         running = true;
         List<GameObject> bullets = new List<GameObject>();
-        foreach (Transform child in bulletParent)
-        {
-            bullets.Add(child.gameObject);
-        }
-        foreach (GameObject bullet in bullets)
-        {
-            Destroy(bullet);
-        }
+        pool.Reset();
     }
 
     public void Resume()
     {
         running = true;
-        foreach (VelocityMove velocityMove in bulletParent.GetComponentsInChildren<VelocityMove>())
-        {
-            velocityMove.Resume();
-        }
+        pool.Resume();
     }
 
     private void Fire()
@@ -65,8 +51,7 @@ public class PlayerController : MonoBehaviour
         float parameter = Probe.localPosition.y / direction.y;
         Vector3 target = Probe.localPosition - parameter * direction;
         Vector3 toTarget = target - transform.localPosition;
-        VelocityMove spawnedBullet = Instantiate(bullet);
-        spawnedBullet.transform.parent = bulletParent;
+        VelocityMove spawnedBullet = pool.GetBullet();
         spawnedBullet.transform.localPosition = transform.localPosition;
         spawnedBullet.velocity = speed * toTarget;
     }
@@ -85,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 local = Probe.localPosition;
         local.x = Mathf.Clamp(local.x, -0.5f, 0.5f);
-        local.y = 1.0f;
+        local.y = transform.localPosition.y;
         local.z = Mathf.Clamp(local.z, -0.5f, 0.5f);
         transform.localPosition = Vector3.Lerp(transform.localPosition, local, 0.5f);
 

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class BossHealthBar : MonoBehaviour
 {
-    public Image HealthBar1, HealthBar2, HealthBar3;
+    //public Image HealthBar1, HealthBar2, HealthBar3;
 
     public OnStageDepleted Listener;
 
@@ -60,6 +60,7 @@ public class BossHealthBar : MonoBehaviour
 
     private void UpdateHealthBars()
     {
+        /*
         int intermediateHealth = health % 100;
         Color currentColor = intermediateHealth > 50 ? Color.Lerp(yellow, green, (intermediateHealth - 50.0f) / 50.0f) : Color.Lerp(red, yellow, intermediateHealth / 50.0f);
         if (health >= 200)
@@ -89,5 +90,6 @@ public class BossHealthBar : MonoBehaviour
             HealthBar2.fillAmount = 0.0f;
             HealthBar3.fillAmount = intermediateHealth / 100.0f;
         }
+        */
     }
 }

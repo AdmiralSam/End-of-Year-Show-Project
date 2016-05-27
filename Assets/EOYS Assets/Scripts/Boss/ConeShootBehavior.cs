@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class ConeShootBehavior : MonoBehaviour
 {
-    public VelocityMove bullet;
-    public Transform bulletParent;
+    public BulletPool pool;
     public Transform player;
     public float radius;
     public float setupTime;
@@ -28,10 +27,7 @@ public class ConeShootBehavior : MonoBehaviour
     public void Pause()
     {
         running = false;
-        foreach (VelocityMove velocityMove in bulletParent.GetComponentsInChildren<VelocityMove>())
-        {
-            velocityMove.Pause();
-        }
+        pool.Pause();
     }
 
     public void Reset()
@@ -39,24 +35,13 @@ public class ConeShootBehavior : MonoBehaviour
         currentState = State.Idle;
         time = 0.0f;
         running = true;
-        List<GameObject> bullets = new List<GameObject>();
-        foreach (Transform child in bulletParent)
-        {
-            bullets.Add(child.gameObject);
-        }
-        foreach (GameObject bullet in bullets)
-        {
-            Destroy(bullet);
-        }
+        pool.Reset();
     }
 
     public void Resume()
     {
         running = true;
-        foreach (VelocityMove velocityMove in bulletParent.GetComponentsInChildren<VelocityMove>())
-        {
-            velocityMove.Resume();
-        }
+        pool.Resume();
     }
 
     private void Fire()
@@ -65,15 +50,14 @@ public class ConeShootBehavior : MonoBehaviour
         toPlayer.Normalize();
         Vector3 uAxis = Vector3.Cross(toPlayer, Vector3.forward).normalized;
         Vector3 vAxis = Vector3.Cross(toPlayer, uAxis);
-        for (int wave = 0; wave < 10; wave++)
+        for (int wave = 0; wave < 5; wave++)
         {
-            float speed = 0.025f * (wave + 1.0f / 11.0f);
-            for (int i = 0; i < 72; i++)
+            float speed = 0.05f * (wave + 1.0f / 11.0f);
+            for (int i = 0; i < 36; i++)
             {
-                float angle = (float)i / 72 * 2 * Mathf.PI;
+                float angle = (float)i / 36 * 2 * Mathf.PI;
                 Vector3 target = toPlayer + spread * Mathf.Cos(angle) * uAxis + spread * Mathf.Sin(angle) * vAxis;
-                VelocityMove spawnedBullet = Instantiate(bullet);
-                spawnedBullet.transform.parent = bulletParent;
+                VelocityMove spawnedBullet = pool.GetBullet();
                 spawnedBullet.transform.localPosition = transform.localPosition;
                 spawnedBullet.velocity = speed * target.normalized;
             }

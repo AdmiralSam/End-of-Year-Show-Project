@@ -3,6 +3,7 @@
 public class VelocityMove : MonoBehaviour
 {
     public Vector3 velocity;
+
     private bool running;
 
     public void Pause()

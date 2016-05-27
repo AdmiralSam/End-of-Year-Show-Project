@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class SimpleShootBehavior : MonoBehaviour
 {
-    public VelocityMove bullet;
-    public Transform bulletParent;
+    public BulletPool pool;
     public Transform player;
     public float speed;
     public float timeBetweenShots;
@@ -22,10 +21,7 @@ public class SimpleShootBehavior : MonoBehaviour
     public void Pause()
     {
         running = false;
-        foreach (VelocityMove velocityMove in bulletParent.GetComponentsInChildren<VelocityMove>())
-        {
-            velocityMove.Pause();
-        }
+        pool.Pause();
     }
 
     public void Reset()
@@ -33,32 +29,20 @@ public class SimpleShootBehavior : MonoBehaviour
         currentState = State.Idle;
         time = 0.0f;
         running = true;
-        List<GameObject> bullets = new List<GameObject>();
-        foreach (Transform child in bulletParent)
-        {
-            bullets.Add(child.gameObject);
-        }
-        foreach (GameObject bullet in bullets)
-        {
-            Destroy(bullet);
-        }
+        pool.Reset();
     }
 
     public void Resume()
     {
         running = true;
-        foreach (VelocityMove velocityMove in bulletParent.GetComponentsInChildren<VelocityMove>())
-        {
-            velocityMove.Resume();
-        }
+        pool.Resume();
     }
 
     private void Fire()
     {
         Vector3 toPlayer = player.transform.localPosition - transform.localPosition;
         toPlayer.Normalize();
-        VelocityMove spawnedBullet = Instantiate(bullet);
-        spawnedBullet.transform.parent = bulletParent;
+        VelocityMove spawnedBullet = pool.GetBullet();
         spawnedBullet.transform.localPosition = transform.localPosition;
         spawnedBullet.velocity = speed * toPlayer;
     }
