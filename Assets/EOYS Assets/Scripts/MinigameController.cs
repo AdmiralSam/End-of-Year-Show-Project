@@ -61,7 +61,7 @@ public class MinigameController : MonoBehaviour
         currentState = State.Neutral;
         GameObject.Find(currentMinigame).GetComponentInChildren<MinigameOpenCloseAnimator>().Close();
         GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().GameReset();
-        minigames[currentMinigame] = MinigameState.Finished;
+        minigames[currentMinigame] = state == MinigameManager.GameState.Won ? MinigameState.Finished : MinigameState.New;
         HUD.Close();
         currentMinigame = null;
     }
@@ -115,13 +115,7 @@ public class MinigameController : MonoBehaviour
                     currentStrength -= Time.deltaTime / StrengthChangeTime;
                     if (currentStrength < 0.0f)
                     {
-                        currentStrength = 0.0f;
-                        currentState = State.Neutral;
-                        GameObject.Find(currentMinigame).GetComponentInChildren<MinigameOpenCloseAnimator>().Close();
-                        GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().GameReset();
-                        minigames[currentMinigame] = MinigameState.New;
-                        HUD.Close();
-                        currentMinigame = null;
+                        GameEnded(MinigameManager.GameState.Lost);
                     }
                     break;
             }

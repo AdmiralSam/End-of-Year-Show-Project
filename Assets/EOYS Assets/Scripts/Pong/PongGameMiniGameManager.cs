@@ -57,13 +57,11 @@ public class PongGameMiniGameManager : MinigameManager
         {
             Instantiate(PongBall);
         }
-
-        Paused = true;
         gameResultSet = false;
         WaitTime.CountDown = true;
         //ShowRules();
-
         //PongGameTimer.StartTimer();
+        Paused = true;
     }
 
     public void GameEnd()
@@ -80,6 +78,7 @@ public class PongGameMiniGameManager : MinigameManager
     // Use this for initialization
     private void Start()
     {
+        Paused = true;
     }
 
     // Update is called once per frame
@@ -94,6 +93,7 @@ public class PongGameMiniGameManager : MinigameManager
                 timeWaited = 0.0f;
                 PongGameTimer.ResetTimer();
                 PongGameTimer.StartTimer();
+                Paused = false;
             }
         }
         if (waitAfterGameResult)

@@ -6,6 +6,6 @@ public class ScaleAnimator : ParameterizedAnimator
 
     public override void SetParameter(float parameter)
     {
-        objectToScale.localScale = new Vector3(parameter + 0.0001f, parameter + 0.0001f, parameter + 0.0001f);
+        objectToScale.localScale = new Vector3(parameter + 0.00001f, parameter + 0.00001f, parameter + 0.00001f);
     }
 }
