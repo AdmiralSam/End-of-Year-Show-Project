@@ -25,7 +25,6 @@ public class CameraTargetListener : MonoBehaviour, ITargetListener
     public void TargetMoved(string target, Vector3 location)
     {
         float angle = Vector3.Angle(location, Vector3.forward);
-        DebugText.text = "Angle: " + angle;
         bool withinDistance = location.sqrMagnitude < MaximumDistance * MaximumDistance;
         bool withinAngle = angle < MaximumAngle;
         if (withinDistance && withinAngle)

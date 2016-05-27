@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MinigameController : MonoBehaviour
@@ -33,8 +34,11 @@ public class MinigameController : MonoBehaviour
                 break;
 
             case MinigameState.New:
-            case MinigameState.Finished:
                 GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator>().Open();
+                break;
+
+            case MinigameState.Finished:
+                GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator2>().Open();
                 break;
         }
     }
@@ -44,10 +48,22 @@ public class MinigameController : MonoBehaviour
         GameObject.Find(currentMinigame).GetComponentInChildren<UIOpenCloseAnimator>().Close();
         GameObject.Find(currentMinigame).GetComponentInChildren<MinigameOpenCloseAnimator>().Open();
         GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().GameStart();
+        GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().Listener = GameEnded;
         minigames[currentMinigame] = MinigameState.Active;
         currentState = State.GainingStrength;
         hudCanvas.SetActive(true);
         HUD.Open();
+    }
+
+    private void GameEnded(MinigameManager.GameState state)
+    {
+        currentStrength = 0.0f;
+        currentState = State.Neutral;
+        GameObject.Find(currentMinigame).GetComponentInChildren<MinigameOpenCloseAnimator>().Close();
+        GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().GameReset();
+        minigames[currentMinigame] = MinigameState.Finished;
+        HUD.Close();
+        currentMinigame = null;
     }
 
     public void LeftTarget(string target)
@@ -61,8 +77,11 @@ public class MinigameController : MonoBehaviour
                 break;
 
             case MinigameState.New:
+                GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator>().Open();
+                break;
+
             case MinigameState.Finished:
-                GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator>().Close();
+                GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator2>().Close();
                 break;
         }
     }
