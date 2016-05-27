@@ -13,7 +13,6 @@ public class BallController : MonoBehaviour
     {
         velocity = Vector3.up;
         GameLost = false;
-        
     }
 
     private void Update()
