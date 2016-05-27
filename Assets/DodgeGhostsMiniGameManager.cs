@@ -10,7 +10,6 @@ public class DodgeGhostsMiniGameManager : MinigameManager {
 	public SpawnRandomEnemies spawner;
 
 	public DestroyOnCollision playerDestroyer;
-	public Player playerController;
 
 	private GameState result;
 	public static bool GameRunning { private set; get; }
@@ -21,6 +20,7 @@ public class DodgeGhostsMiniGameManager : MinigameManager {
 		gameTimer.StopTimer ();
 		GameRunning = false;
 		spawner.StopSpawningEnemies ();
+		playerDestroyer.gameObject.SetActive (false);
 	}
 
 	public override void GameReset()
@@ -31,6 +31,7 @@ public class DodgeGhostsMiniGameManager : MinigameManager {
 		WaitBeforeGame.ResetWait ();
 		WaitAfterGame.ResetWait ();
 		spawner.StopSpawningEnemies ();
+		playerDestroyer.gameObject.SetActive (false);
 	}
 
 	public override void GameResume()
@@ -38,6 +39,7 @@ public class DodgeGhostsMiniGameManager : MinigameManager {
 		gameTimer.StartTimer ();
 		GameRunning = true;
 		spawner.StartSpawningEnemies ();
+		playerDestroyer.gameObject.SetActive (true);
 	}
 
 	public override void GameStart()
@@ -47,6 +49,7 @@ public class DodgeGhostsMiniGameManager : MinigameManager {
 		WaitBeforeGame.GetComponent<UIOpenCloseAnimator>().Open();
 		WaitBeforeGame.StartCountDown ();
 		spawner.StopSpawningEnemies ();
+		playerDestroyer.gameObject.SetActive (true);
 	}
 
 	private void GameEnded(bool won)
@@ -57,6 +60,7 @@ public class DodgeGhostsMiniGameManager : MinigameManager {
 			GameRunning = false;
 			Display.ShowGameResult (won);
 			result = won ? GameState.Won : GameState.Lost;
+			playerDestroyer.gameObject.SetActive (false);
 			WaitAfterGame.StartCountDown ();
 			spawner.Reset ();
 		}

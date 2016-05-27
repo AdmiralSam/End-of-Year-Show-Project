@@ -12,7 +12,7 @@ public class MoveTowardsPlayer : MonoBehaviour {
 	// Use this for initialization
 	private void Start()
 	{
-		wallPosition = 1.0f;
+		wallPosition = 1.5f;
 	}
 
 	// Update is called once per frame

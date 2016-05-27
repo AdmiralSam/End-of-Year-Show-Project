@@ -14,6 +14,7 @@ public class DisplayGameResults : MonoBehaviour {
 
 	public void ShowGameResult(bool won)
 	{
+		Panel.SetActive (true);
 		foreach (Text t in GameResultText) 
 		{
 			t.text = won ? "Congratulations!\nYou Won!" : "You Lost! Try Again!";

@@ -38,19 +38,17 @@ public class Player : MonoBehaviour {
 		
 	public void StartMoving ()
 	{
-		
+		ballMoving = true;
 	}
 
 	public void StopMoving ()
 	{
-	}
-
-	public void ResumeMoving()
-	{
+		ballMoving = false;
 	}
 
 	public void Reset()
 	{
+		//transform.localPosition = new Vector3 ();
 	}
 
 }

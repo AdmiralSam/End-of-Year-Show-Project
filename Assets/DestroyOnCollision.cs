@@ -16,17 +16,17 @@ public class DestroyOnCollision : MonoBehaviour {
 	
 	}
 
-	private void onTrigger(Collider other)
+	private void OnTriggerEnter(Collider other)
 	{
-		if(name.Contains("Player"))
-		{
-			if (Listener != null) 
-			{
+		if (name.Contains ("Player")) {
+			if (Listener != null) {
 				Listener ();
 			}
+		} 
+		else 
+		{
+			Destroy (gameObject);
 		}
-
-		Destroy (gameObject);
 	}
 
 }
