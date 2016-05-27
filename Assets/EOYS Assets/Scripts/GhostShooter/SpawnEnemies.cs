@@ -5,7 +5,6 @@ public class SpawnEnemies : MonoBehaviour
 {
     public Transform[] enemyPrefabs;
     public float enemyScale;
-    public GameTimer gameTimer;
     public Transform miniGameTransform;
     public float spawnTime;
     private bool spawnEnemies;
@@ -14,6 +13,7 @@ public class SpawnEnemies : MonoBehaviour
     public void Reset()
     {
         spawnEnemies = false;
+
         List<GameObject> spawned = new List<GameObject>();
 
         for (int i = 0; i < miniGameTransform.childCount; i++)
@@ -24,6 +24,7 @@ public class SpawnEnemies : MonoBehaviour
         {
             Destroy(child);
         }
+        
     }
 
     public void StartSpawningEnemies()
