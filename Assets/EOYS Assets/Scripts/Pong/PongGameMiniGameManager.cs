@@ -1,14 +1,23 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 using UnityEngine.UI;
 
 public class PongGameMiniGameManager : MinigameManager
 {
+    public static bool Paused { private set; get; }
+
+    public Text Debug;
+
     public GameTimer PongGameTimer;
     public Text[] GameResult;
-    public BallController PongBall;
-    public static bool Paused { private set; get; }
+    public GameObject AllGameObjectsContainer;
+    public BallController PongBallController;
+    public GameObject PongBall;
+    public float waitTime;
+
+    private bool waitBeforeGameStart;
+    private bool waitAfterGameResult;
+    private float timeWaited;
+
     private bool gameResultSet;
 
     public override void GamePause()
@@ -26,18 +35,35 @@ public class PongGameMiniGameManager : MinigameManager
 
     public override void GameResume()
     {
+        if (waitBeforeGameStart)
+        {
+            WaitTime.CountDown = true;
+        }
+        else
+        {
+            PongGameTimer.StartTimer();
+        }
+
         Paused = false;
-        PongGameTimer.StartTimer();
     }
 
     public override void GameStart()
     {
+        waitBeforeGameStart = true;
+        waitAfterGameResult = false;
+        timeWaited = 0.0f;
+
+        if (PongBallController.transform.parent.gameObject == null)
+        {
+            Instantiate(PongBall);
+        }
+
         Paused = true;
         gameResultSet = false;
-
+        WaitTime.CountDown = true;
         //ShowRules();
 
-        PongGameTimer.StartTimer();
+        //PongGameTimer.StartTimer();
     }
 
     public void GameEnd()
@@ -45,27 +71,46 @@ public class PongGameMiniGameManager : MinigameManager
         if (!gameResultSet)
         {
             PongGameTimer.StopTimer();
-            if (PongBall.GameLost)
-            {
-                Destroy(PongBall.gameObject);
-                Listener(GameState.Lost);
-            }
-            else
-            {
-                Destroy(PongBall.gameObject);
-                Listener(GameState.Won);
-            }
-
-            gameResultSet = true;
+            Destroy(PongBallController.gameObject);
+            AllGameObjectsContainer.gameObject.SetActive(false);
+            waitAfterGameResult = true;
         }
     }
+
     // Use this for initialization
-    void Start () {
-        
-	}
-	
-	// Update is called once per frame
-	void Update () { 
-        
-	}
+    private void Start()
+    {
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+        if (waitBeforeGameStart)
+        {
+            timeWaited += Time.deltaTime;
+            if (timeWaited >= waitTime)
+            {
+                waitBeforeGameStart = false;
+                timeWaited = 0.0f;
+                PongGameTimer.ResetTimer();
+                PongGameTimer.StartTimer();
+            }
+        }
+        if (waitAfterGameResult)
+        {
+            timeWaited += Time.deltaTime;
+            if (timeWaited >= waitTime)
+            {
+                waitAfterGameResult = false;
+                if (PongBallController.GameLost)
+                {
+                    Listener(GameState.Lost);
+                }
+                else
+                {
+                    Listener(GameState.Won);
+                }
+            }
+        }
+    }
 }

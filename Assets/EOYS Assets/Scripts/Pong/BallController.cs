@@ -6,6 +6,7 @@ public class BallController : MonoBehaviour
     public float Speed;
     public Text Debug;
     public bool GameLost { private set; get; }
+    public GameTimer PongGameTimer;
     private Vector3 velocity;
 
     private void Start()
@@ -19,7 +20,7 @@ public class BallController : MonoBehaviour
     {
         if (!PongGameMiniGameManager.Paused)
         {
-            if (!GameTimer.Finished)
+            if (!PongGameTimer.Finished)
             {
                 transform.localPosition += velocity * Speed * Time.deltaTime;
                 GetComponent<LineRenderer>().SetPosition(1, new Vector3(0.0f, 0.0f, (-0.5f - transform.localPosition.z) / transform.localScale.z));
@@ -29,7 +30,7 @@ public class BallController : MonoBehaviour
                 GameLost = true;
                 GetComponentInParent<PongGameMiniGameManager>().GameEnd();
             }
-            else if (GameTimer.Finished)
+            else if (PongGameTimer.Finished)
             {
                 GetComponentInParent<PongGameMiniGameManager>().GameEnd();
             }

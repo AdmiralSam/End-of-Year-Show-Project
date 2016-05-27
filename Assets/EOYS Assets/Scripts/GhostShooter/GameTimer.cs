@@ -5,14 +5,16 @@ public class GameTimer : MonoBehaviour
 {
     public float GameTimeLeft { get; private set; }
     public bool Paused { get; private set; }
-    public static bool Finished { get; private set; }
+    public bool Finished { get; private set; }
 
     public Text[] timeFields;
+
+    private float totalGameTime = 10.0f;
 
     // Use this for initialization
     private void Start()
     {
-        GameTimeLeft = 59.0f;
+        GameTimeLeft = totalGameTime;
         Paused = true;
         Finished = false;
     }
@@ -48,7 +50,7 @@ public class GameTimer : MonoBehaviour
 
     public void ResetTimer()
     {
-        GameTimeLeft = 59.0f;
+        GameTimeLeft = totalGameTime;
         Paused = true;
         Finished = false;
     }

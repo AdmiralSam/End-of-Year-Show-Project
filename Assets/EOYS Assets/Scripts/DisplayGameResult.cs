@@ -7,6 +7,7 @@ public class DisplayGameResult : MonoBehaviour {
     public Text[] GameResultText;
     public GameObject[] Panels;
     public BallController PongBall;
+    public GameTimer PongGameTimer;
 
 	// Use this for initialization
 	void Start () {
@@ -31,7 +32,7 @@ public class DisplayGameResult : MonoBehaviour {
                 PanelActivation(true);
                 t.text = ("You Lost!\nTry Again!");
             }
-            else if(!PongBall.GameLost && GameTimer.Finished)
+            else if(!PongBall.GameLost && PongGameTimer.Finished)
             {
                 PanelActivation(true);
                 t.text = "Congratulations!\nYou Won!";
