@@ -77,7 +77,7 @@ public class MinigameController : MonoBehaviour
                 break;
 
             case MinigameState.New:
-                GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator>().Open();
+                GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator>().Close();
                 break;
 
             case MinigameState.Finished:
