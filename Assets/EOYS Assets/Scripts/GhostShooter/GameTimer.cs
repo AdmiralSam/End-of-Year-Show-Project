@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class GameTimer : MonoBehaviour
 {
     public Text[] timeFields;
-	public float totalGameTime;
+    public float totalGameTime;
 
     public delegate void OnTimerFinished();
 

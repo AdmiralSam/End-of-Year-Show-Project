@@ -24,7 +24,6 @@ public class SpawnEnemies : MonoBehaviour
         {
             Destroy(child);
         }
-        
     }
 
     public void StartSpawningEnemies()

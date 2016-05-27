@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SimpleShootBehavior : MonoBehaviour
 {
-    public BulletPool pool;
     public Transform player;
+    public BulletPool pool;
     public float speed;
     public float timeBetweenShots;
     private State currentState;

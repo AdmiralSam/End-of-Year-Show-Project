@@ -10,8 +10,8 @@ public class MinigameController : MonoBehaviour
     private string currentMinigame;
     private State currentState;
     private float currentStrength;
-    private Dictionary<string, MinigameState> minigames;
     private Dictionary<string, bool> inView;
+    private Dictionary<string, MinigameState> minigames;
 
     private enum MinigameState { New, Active, Finished }
 

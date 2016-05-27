@@ -5,10 +5,9 @@ public class GhostShooterMiniGameManager : MinigameManager
     public DisplayGameResults Display;
     public GameTimer gameTimer;
     public GameObject hud;
+    public Player player;
     public ScoreKeeper scoreKeeper;
     public SpawnEnemies spawner;
-	public Player player;
-
     public WaitTimeAfterGame WaitAfterGame;
     public WaitTimeBeforeGame WaitBeforeGame;
     private GameState result;
@@ -60,7 +59,7 @@ public class GhostShooterMiniGameManager : MinigameManager
         {
             GameRunning = false;
             spawner.Reset();
-			Display.ShowGameResult (won);
+            Display.ShowGameResult(won);
             gameTimer.StopTimer();
             result = won ? GameState.Won : GameState.Lost;
             WaitAfterGame.StartCountDown();

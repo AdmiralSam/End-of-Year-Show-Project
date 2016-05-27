@@ -1,18 +1,17 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BossMinigameManager : MinigameManager
 {
+    public WaitTimeAfterGame afterTimer;
+    public WaitTimeBeforeGame beforeTimer;
     public BossBehaviorSwitcher boss;
-    public Animator unityChan;
+    public DisplayGameResult display;
     public PlayerHit hit;
     public PlayerController player;
-    public WaitTimeBeforeGame beforeTimer;
-    public WaitTimeAfterGame afterTimer;
-    public DisplayGameResult display;
+    public Animator unityChan;
     private State currentState;
-    private float time;
     private GameState result;
+    private float time;
 
     private enum State { Idle, Waiting, Playing, Finished }
 
@@ -60,14 +59,6 @@ public class BossMinigameManager : MinigameManager
         hit.gameObject.SetActive(true);
     }
 
-    private void Start()
-    {
-        beforeTimer.Listener = StartPlaying;
-        hit.Listener = PlayerDied;
-        boss.Listener = BossDied;
-        afterTimer.Listener = () => Listener(result);
-    }
-
     private void BossDied()
     {
         result = GameState.Won;
@@ -85,6 +76,14 @@ public class BossMinigameManager : MinigameManager
         display.PanelActivation(true, false);
         boss.Pause();
         player.Reset();
+    }
+
+    private void Start()
+    {
+        beforeTimer.Listener = StartPlaying;
+        hit.Listener = PlayerDied;
+        boss.Listener = BossDied;
+        afterTimer.Listener = () => Listener(result);
     }
 
     private void StartPlaying()

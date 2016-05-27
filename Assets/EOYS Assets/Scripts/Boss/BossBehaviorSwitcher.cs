@@ -9,6 +9,7 @@ public class BossBehaviorSwitcher : MonoBehaviour
     private StarCircleBehavior starCircleBehavior;
 
     public delegate void OnBossDeath();
+
     public OnBossDeath Listener { private get; set; }
 
     public void Activate()

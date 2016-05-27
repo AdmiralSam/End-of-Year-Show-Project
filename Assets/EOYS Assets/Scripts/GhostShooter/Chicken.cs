@@ -3,8 +3,8 @@ using Vuforia;
 
 public class Chicken : MonoBehaviour, ITrackableEventHandler
 {
-    private float weed;
     public MinigameManager ses;
+    private float weed;
 
     public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus)
     {
@@ -31,7 +31,7 @@ public class Chicken : MonoBehaviour, ITrackableEventHandler
     private void Update()
     {
         if (weed >= 0)
-        weed += Time.deltaTime;
+            weed += Time.deltaTime;
         if (weed > 1)
         {
             ses.GameStart();

@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class ConeShootBehavior : MonoBehaviour
 {
-    public BulletPool pool;
     public Transform player;
+    public BulletPool pool;
     public float radius;
     public float setupTime;
     public float spread;
