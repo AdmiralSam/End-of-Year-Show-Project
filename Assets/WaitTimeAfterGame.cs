@@ -36,8 +36,9 @@ public class WaitTimeAfterGame : MonoBehaviour {
 			timeLeft -= Time.deltaTime; 
 		}
 
-		if(timeLeft <= 0.0f)
+		if(timeLeft < 0.0f)
 		{
+			timeLeft = 0.0f;
 			countDown = false;
 
 			if (Listener != null) 

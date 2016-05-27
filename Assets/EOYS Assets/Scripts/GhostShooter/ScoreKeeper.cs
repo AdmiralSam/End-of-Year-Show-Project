@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 public class ScoreKeeper : MonoBehaviour
 {
-    public Text[] scoreFields;
     public int Score { private set; get; }
+	public int ScoreToWin;
+    public Text[] scoreFields;
 
     public void IncreaseScore(int points)
     {
@@ -12,9 +13,9 @@ public class ScoreKeeper : MonoBehaviour
     }
 
     public void Reset()
-    {
+        {
         Score = 0;
-    }
+        }
 
     public void TakeDamage(int damage)
     {
@@ -31,7 +32,7 @@ public class ScoreKeeper : MonoBehaviour
     private void Update()
     {
         foreach (Text text in scoreFields)
-        {
+    {
             text.text = "Score: " + Score;
         }
     }

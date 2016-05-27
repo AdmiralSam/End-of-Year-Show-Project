@@ -55,6 +55,7 @@ public class GameTimer : MonoBehaviour
                 }
             }
         }
+
         foreach (Text text in timeFields)
         {
             text.text = string.Format("Time: {0:00} : {1:00}", 0, Mathf.Round(GameTimeLeft));
