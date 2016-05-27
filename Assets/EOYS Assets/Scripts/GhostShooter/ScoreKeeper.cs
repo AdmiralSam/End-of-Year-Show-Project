@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class ScoreKeeper : MonoBehaviour
 {
     public int Score { private set; get; }
+	public int ScoreToWin;
     public Text[] scoreFields;
 
     // Use this for initialization
@@ -17,7 +18,7 @@ public class ScoreKeeper : MonoBehaviour
     {
         foreach (Text text in scoreFields)
         {
-            text.text = "Score: " + Score;
+            text.text = "Score: " + Score + " / " + ScoreToWin;
         }
     }
 

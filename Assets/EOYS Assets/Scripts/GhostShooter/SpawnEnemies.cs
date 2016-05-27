@@ -10,30 +10,44 @@ public class SpawnEnemies : MonoBehaviour
     public Transform miniGameTransform;
 
     private float spawnTimer;
+	private bool spawnEnemies;
 
     // Use this for initialization
     private void Start()
     {
-        spawnTimer = 0.0f;
+		spawnTimer = spawnTime;
+		spawnEnemies = false;
     }
+
+	public void StartSpawningEnemies()
+	{
+		spawnEnemies = true;
+	}
+
+	public void StopSpawningEnemies()
+	{
+		spawnEnemies = false;
+	}
 
     // Update is called once per frame
     private void Update()
     {
-        if (!gameTimer.Paused && gameTimer.GameTimeLeft > 0)
-        {
-            spawnTimer += Time.deltaTime;
-            if (spawnTimer > spawnTime)
-            {
-                spawnTimer = 0.0f;
-                Spawn();
-            }
-        }
+		if (spawnEnemies) 
+		{
+			spawnTimer -= Time.deltaTime;
+			if (spawnTimer  <= 0.0f) 
+			{
+				spawnTimer = spawnTime;
+				Spawn ();
+			}
+		}
     }
 
     public void Reset()
     {
+		spawnEnemies = false;
         List<GameObject> spawned = new List<GameObject>();
+
         for (int i = 0; i < miniGameTransform.childCount; i++)
         {
             spawned.Add(miniGameTransform.GetChild(i).gameObject);

@@ -17,6 +17,7 @@ public class DisplayGameResult : MonoBehaviour
 
     public void Reset()
     {
+		PanelActivation (false, false);
         foreach (Text t in GameResultText)
         {
             t.text = "";

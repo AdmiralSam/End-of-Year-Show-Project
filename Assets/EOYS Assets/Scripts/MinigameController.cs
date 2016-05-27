@@ -70,7 +70,6 @@ public class MinigameController : MonoBehaviour
             GameObject.Find(currentMinigame).GetComponentInChildren<UIOpenCloseAnimator>().Open();
         }
         HUD.Close();
-        currentMinigame = null;
     }
 
     public void LeftTarget(string target)
@@ -123,6 +122,7 @@ public class MinigameController : MonoBehaviour
                     if (currentStrength < 0.0f)
                     {
                         GameEnded(MinigameManager.GameState.Lost);
+						currentMinigame = null;
                     }
                     break;
             }

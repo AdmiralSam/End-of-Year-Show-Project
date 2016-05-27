@@ -13,7 +13,7 @@ public class GameTimer : MonoBehaviour
 
     public Text[] timeFields;
 
-    private float totalGameTime = 59.0f;
+	public float totalGameTime;
 
     // Use this for initialization
     private void Start()
@@ -39,6 +39,7 @@ public class GameTimer : MonoBehaviour
                 }
             }
         }
+
         foreach (Text text in timeFields)
         {
             text.text = string.Format("Time: {0:00} : {1:00}", 0, Mathf.Round(GameTimeLeft));

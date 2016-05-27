@@ -42,10 +42,10 @@ public class WaitTimeBeforeGame : MonoBehaviour {
             }
         }
 
-        if(timeLeft <= 0.0f)
+        if(timeLeft < 0.0f)
         {
             CountDown = false;
-
+			timeLeft = 0.0f;
 			if (Listener != null) 
 			{
 				Listener ();
