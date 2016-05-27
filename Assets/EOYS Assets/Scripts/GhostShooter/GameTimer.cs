@@ -5,7 +5,11 @@ public class GameTimer : MonoBehaviour
 {
     public float GameTimeLeft { get; private set; }
     public bool Paused { get; private set; }
-    public bool Finished { get; private set; }
+
+    public delegate void OnTimerFinished();
+
+    //Call listener(GameState.Won) or listener(GameState.Lost) when they won or lost
+    public OnTimerFinished Listener { private get; set; }
 
     public Text[] timeFields;
 
@@ -16,7 +20,6 @@ public class GameTimer : MonoBehaviour
     {
         GameTimeLeft = totalGameTime;
         Paused = true;
-        Finished = false;
     }
 
     // Update is called once per frame
@@ -29,7 +32,11 @@ public class GameTimer : MonoBehaviour
             if (GameTimeLeft < 0)
             {
                 GameTimeLeft = 0;
-                Finished = true;
+                Paused = true;
+                if (Listener != null)
+                {
+                    Listener();
+                }
             }
         }
         foreach (Text text in timeFields)
@@ -52,6 +59,5 @@ public class GameTimer : MonoBehaviour
     {
         GameTimeLeft = totalGameTime;
         Paused = true;
-        Finished = false;
     }
 }
