@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
         currentState = State.Idle;
         time = 0.0f;
         running = true;
-        List<GameObject> bullets = new List<GameObject>();
         pool.Reset();
     }
 
@@ -60,7 +59,6 @@ public class PlayerController : MonoBehaviour
     {
         time = 0.0f;
         running = true;
-        Activate();
     }
 
     private void Update()

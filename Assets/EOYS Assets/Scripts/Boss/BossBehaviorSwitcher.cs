@@ -8,6 +8,9 @@ public class BossBehaviorSwitcher : MonoBehaviour
     private SimpleShootBehavior simpleShootBehavior;
     private StarCircleBehavior starCircleBehavior;
 
+    public delegate void OnBossDeath();
+    public OnBossDeath Listener { private get; set; }
+
     public void Activate()
     {
         currentStage = 1;
@@ -29,6 +32,7 @@ public class BossBehaviorSwitcher : MonoBehaviour
         simpleShootBehavior.Reset();
         coneShootBehavior.Reset();
         starCircleBehavior.Reset();
+        transform.localPosition = new Vector3(0.0f, 0.1f, 0.0f);
     }
 
     public void Resume()
@@ -59,7 +63,10 @@ public class BossBehaviorSwitcher : MonoBehaviour
 
             case 3:
                 starCircleBehavior.Reset();
-                //Boss Died
+                if (Listener != null)
+                {
+                    Listener();
+                }
                 break;
         }
     }
