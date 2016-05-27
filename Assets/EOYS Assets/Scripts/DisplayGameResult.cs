@@ -10,6 +10,14 @@ public class DisplayGameResult : MonoBehaviour
 
     // Use this for initialization
     private void Start()
+<<<<<<< HEAD
+=======
+    {
+        PanelActivation(false);
+    }
+
+    private void PanelActivation(bool activate)
+>>>>>>> origin/master
     {
         PanelActivation(false, true);
         Reset();
@@ -23,12 +31,26 @@ public class DisplayGameResult : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     public void PanelActivation(bool activate, bool won)
     {
         foreach (GameObject panel in Panels)
         {
             panel.SetActive(activate);
             foreach (Text t in GameResultText)
+=======
+    // Update is called once per frame
+    private void Update()
+    {
+        foreach (Text t in GameResultText)
+        {
+            if (PongBall.GameLost)
+            {
+                PanelActivation(true);
+                t.text = ("You Lost!\nTry Again!");
+            }
+            else if (!PongBall.GameLost && PongGameTimer.Finished)
+>>>>>>> origin/master
             {
                 if (won)
                 {

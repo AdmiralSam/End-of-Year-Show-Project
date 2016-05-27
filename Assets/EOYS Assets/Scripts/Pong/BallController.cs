@@ -12,6 +12,7 @@ public class BallController : MonoBehaviour
     private void Start()
     {
         velocity = Vector3.up;
+<<<<<<< HEAD
     }
 
     public void ResetBall()
@@ -23,6 +24,9 @@ public class BallController : MonoBehaviour
     public void StartBallMovement()
     {
         running = true;
+=======
+        GameLost = false;
+>>>>>>> origin/master
     }
 
     private void Update()
