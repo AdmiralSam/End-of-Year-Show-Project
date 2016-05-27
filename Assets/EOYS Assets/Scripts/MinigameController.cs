@@ -35,7 +35,7 @@ public class MinigameController : MonoBehaviour
         {
             if (minigames["Target 1"] != MinigameState.Finished || minigames["Target 2"] != MinigameState.Finished || minigames["Target 3"] != MinigameState.Finished)
             {
-                //return;
+                return;
             }
         }
         currentMinigame = target;
