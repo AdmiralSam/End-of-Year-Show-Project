@@ -8,21 +8,6 @@ public class DisplayGameResult : MonoBehaviour
     public BallController PongBall;
     public GameTimer PongGameTimer;
 
-    // Use this for initialization
-    private void Start()
-    {
-        PanelActivation(false, true);
-        Reset();
-    }
-
-    public void Reset()
-    {
-        foreach (Text t in GameResultText)
-        {
-            t.text = "";
-        }
-    }
-
     public void PanelActivation(bool activate, bool won)
     {
         foreach (GameObject panel in Panels)
@@ -40,5 +25,20 @@ public class DisplayGameResult : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Reset()
+    {
+        foreach (Text t in GameResultText)
+        {
+            t.text = "";
+        }
+    }
+
+    // Use this for initialization
+    private void Start()
+    {
+        PanelActivation(false, true);
+        Reset();
     }
 }

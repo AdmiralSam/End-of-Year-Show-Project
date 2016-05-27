@@ -4,6 +4,14 @@ public class MoveBall : MonoBehaviour
 {
     public Vector3 velocity;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name.Contains("Spawn"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Use this for initialization
     private void Start()
     {
@@ -15,14 +23,6 @@ public class MoveBall : MonoBehaviour
         transform.localPosition += velocity * Time.deltaTime;
 
         if (transform.localPosition.y < 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.name.Contains("Spawn"))
         {
             Destroy(gameObject);
         }

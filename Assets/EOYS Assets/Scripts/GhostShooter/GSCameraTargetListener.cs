@@ -7,6 +7,10 @@ public class GSCameraTargetListener : MonoBehaviour, ITargetListener
     //private int messageCount;
     private bool canSee = false;
 
+    public void EnterDimension()
+    {
+    }
+
     public void TargetEnteredView(string target)
     {
         //DebugText.text = string.Format("{0}: {1} has entered", messageCount++, target);
@@ -28,10 +32,6 @@ public class GSCameraTargetListener : MonoBehaviour, ITargetListener
     public void TargetMoved(string target, Vector3 location)
     {
         //DebugText.text = string.Format("{0}: {1} is at {2}", messageCount++, target, location);
-    }
-
-    public void EnterDimension()
-    {
     }
 
     private void Start()

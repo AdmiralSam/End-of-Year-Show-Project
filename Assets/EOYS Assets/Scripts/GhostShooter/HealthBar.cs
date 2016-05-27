@@ -3,46 +3,16 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public int maxHealth;
     public Image first;
+    public int maxHealth;
+    public ScoreKeeper scoreKeeper;
     public Image second;
     public Image third;
-
-    public ScoreKeeper scoreKeeper;
-
-    public int CurrentHealth { get; private set; }
-
+    private Color black = new Color(0.5F, 0.5F, 0.5F, 0.5F);
     private Color green = new Color(50 / 255F, 205 / 255F, 50 / 255F, 0.5F);
     private Color orange = new Color(1F, 153 / 255F, 0F, 0.5F);
     private Color red = new Color(1.0F, 0F, 0F, 0.5F);
-    private Color black = new Color(0.5F, 0.5F, 0.5F, 0.5F);
-
-    // Use this for initialization
-    private void Start()
-    {
-        CurrentHealth = maxHealth;
-        setHealthBarColor(green);
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        if (CurrentHealth == 0)
-        {
-            setHealthBarColor(black);
-            scoreKeeper.IncreaseScore(maxHealth);
-            Destroy(this.transform.parent.gameObject);
-            return;
-        }
-        if (CurrentHealth < maxHealth)
-        {
-            setHealthBarColor(orange);
-        }
-        if (CurrentHealth <= maxHealth / 3)
-        {
-            setHealthBarColor(red);
-        }
-    }
+    public int CurrentHealth { get; private set; }
 
     public void takeDamage(int damagePoints)
     {
@@ -100,6 +70,33 @@ public class HealthBar : MonoBehaviour
         {
             second.color = black;
             third.color = black;
+        }
+    }
+
+    // Use this for initialization
+    private void Start()
+    {
+        CurrentHealth = maxHealth;
+        setHealthBarColor(green);
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+        if (CurrentHealth == 0)
+        {
+            setHealthBarColor(black);
+            scoreKeeper.IncreaseScore(maxHealth);
+            Destroy(this.transform.parent.gameObject);
+            return;
+        }
+        if (CurrentHealth < maxHealth)
+        {
+            setHealthBarColor(orange);
+        }
+        if (CurrentHealth <= maxHealth / 3)
+        {
+            setHealthBarColor(red);
         }
     }
 }

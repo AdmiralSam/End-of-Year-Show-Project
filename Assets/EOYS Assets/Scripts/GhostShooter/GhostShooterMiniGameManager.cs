@@ -3,9 +3,9 @@
 public class GhostShooterMiniGameManager : MinigameManager
 {
     public GameTimer gameTimer;
+    public GameObject hud;
     public ScoreKeeper scoreKeeper;
     public SpawnEnemies spawner;
-    public GameObject hud;
 
     public override void GamePause()
     {

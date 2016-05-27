@@ -3,17 +3,33 @@ using UnityEngine.UI;
 
 public class GameTimer : MonoBehaviour
 {
-    public float GameTimeLeft { get; private set; }
-    public bool Paused { get; private set; }
+    public Text[] timeFields;
+    private float totalGameTime = 59.0f;
 
     public delegate void OnTimerFinished();
+
+    public float GameTimeLeft { get; private set; }
 
     //Call listener(GameState.Won) or listener(GameState.Lost) when they won or lost
     public OnTimerFinished Listener { private get; set; }
 
-    public Text[] timeFields;
+    public bool Paused { get; private set; }
 
-    private float totalGameTime = 59.0f;
+    public void ResetTimer()
+    {
+        GameTimeLeft = totalGameTime;
+        Paused = true;
+    }
+
+    public void StartTimer()
+    {
+        Paused = false;
+    }
+
+    public void StopTimer()
+    {
+        Paused = true;
+    }
 
     // Use this for initialization
     private void Start()
@@ -43,21 +59,5 @@ public class GameTimer : MonoBehaviour
         {
             text.text = string.Format("Time: {0:00} : {1:00}", 0, Mathf.Round(GameTimeLeft));
         }
-    }
-
-    public void StartTimer()
-    {
-        Paused = false;
-    }
-
-    public void StopTimer()
-    {
-        Paused = true;
-    }
-
-    public void ResetTimer()
-    {
-        GameTimeLeft = totalGameTime;
-        Paused = true;
     }
 }

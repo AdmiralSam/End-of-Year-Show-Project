@@ -2,8 +2,8 @@
 
 public class RemoveOnExit : MonoBehaviour
 {
-    public Vector3 MinimumCorner;
     public Vector3 MaximumCorner;
+    public Vector3 MinimumCorner;
 
     private void Update()
     {

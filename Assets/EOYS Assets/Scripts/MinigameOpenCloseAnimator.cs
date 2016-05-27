@@ -5,10 +5,20 @@ public class MinigameOpenCloseAnimator : MonoBehaviour
 {
     public float AnimationTime;
     public List<ParameterizedAnimator> animators;
-    private float currentTime;
     private State currentState;
+    private float currentTime;
 
     private enum State { Open, Closed, Opening, Closing }
+
+    public void Close()
+    {
+        currentState = State.Closing;
+    }
+
+    public void Open()
+    {
+        currentState = State.Opening;
+    }
 
     private void Start()
     {
@@ -42,15 +52,5 @@ public class MinigameOpenCloseAnimator : MonoBehaviour
         {
             animator.SetParameter(currentTime / AnimationTime);
         }
-    }
-
-    public void Open()
-    {
-        currentState = State.Opening;
-    }
-
-    public void Close()
-    {
-        currentState = State.Closing;
     }
 }

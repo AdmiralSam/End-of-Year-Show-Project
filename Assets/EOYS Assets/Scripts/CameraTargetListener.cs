@@ -3,11 +3,16 @@ using UnityEngine.UI;
 
 public class CameraTargetListener : MonoBehaviour, ITargetListener
 {
-    public Text DebugText;
     public MinigameController controller;
-    public float MaximumDistance;
+    public Text DebugText;
     public float MaximumAngle;
+    public float MaximumDistance;
     private bool inRange;
+
+    public void EnterDimension()
+    {
+        controller.EnteredDimension();
+    }
 
     public void TargetEnteredView(string target)
     {
@@ -43,11 +48,6 @@ public class CameraTargetListener : MonoBehaviour, ITargetListener
                 inRange = false;
             }
         }
-    }
-
-    public void EnterDimension()
-    {
-        controller.EnteredDimension();
     }
 
     private void Start()

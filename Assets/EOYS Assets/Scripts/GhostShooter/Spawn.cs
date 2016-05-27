@@ -4,18 +4,6 @@ public class Spawn : MonoBehaviour
 {
     public Color color;
 
-    // Use this for initialization
-    private void Start()
-    {
-        //this.GetComponent<Renderer>().material.color = new Color(0F, 179 / 255F, 1F, 1F);
-        this.GetComponent<Renderer>().material.color = color;
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.name.Contains("Ball"))
@@ -29,5 +17,17 @@ public class Spawn : MonoBehaviour
                 GetComponentInChildren<HealthBar>().takeDamage(1);
             }
         }
+    }
+
+    // Use this for initialization
+    private void Start()
+    {
+        //this.GetComponent<Renderer>().material.color = new Color(0F, 179 / 255F, 1F, 1F);
+        this.GetComponent<Renderer>().material.color = color;
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
     }
 }

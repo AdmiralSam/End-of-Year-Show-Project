@@ -3,19 +3,15 @@ using UnityEngine.UI;
 
 public class BallController : MonoBehaviour
 {
-    public float Speed;
     public Text Debug;
     public GameTimer PongGameTimer;
-    private Vector3 velocity;
+    public float Speed;
     private bool running;
+    private Vector3 velocity;
 
-	public delegate void OnBallDied ();
-	public OnBallDied Listener { private get; set; }
+    public delegate void OnBallDied();
 
-    private void Start()
-    {
-        velocity = Vector3.up;
-    }
+    public OnBallDied Listener { private get; set; }
 
     public void ResetBall()
     {
@@ -26,24 +22,6 @@ public class BallController : MonoBehaviour
     public void StartBallMovement()
     {
         running = true;
-    }
-
-    private void Update()
-    {
-        if (PongGameMiniGameManager.GameRunning)
-        {
-            if (running)
-            {
-                transform.localPosition += velocity * Speed * Time.deltaTime;
-                GetComponent<LineRenderer>().SetPosition(1, new Vector3(0.0f, 0.0f, (-0.5f - transform.localPosition.z) / transform.localScale.z));
-            }
-            if (transform.localPosition.y >= 1.0f)
-            {
-				if (Listener != null) {
-					Listener ();
-				}
-            }
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -61,6 +39,30 @@ public class BallController : MonoBehaviour
             string[] normalString = other.name.Split(':');
             Vector3 normal = new Vector3(float.Parse(normalString[0]), float.Parse(normalString[1]), float.Parse(normalString[2]));
             velocity = Vector3.Reflect(velocity, normal);
+        }
+    }
+
+    private void Start()
+    {
+        velocity = Vector3.up;
+    }
+
+    private void Update()
+    {
+        if (PongGameMiniGameManager.GameRunning)
+        {
+            if (running)
+            {
+                transform.localPosition += velocity * Speed * Time.deltaTime;
+                GetComponent<LineRenderer>().SetPosition(1, new Vector3(0.0f, 0.0f, (-0.5f - transform.localPosition.z) / transform.localScale.z));
+            }
+            if (transform.localPosition.y >= 1.0f)
+            {
+                if (Listener != null)
+                {
+                    Listener();
+                }
+            }
         }
     }
 }

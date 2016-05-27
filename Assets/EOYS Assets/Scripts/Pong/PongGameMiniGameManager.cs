@@ -3,18 +3,15 @@ using UnityEngine.UI;
 
 public class PongGameMiniGameManager : MinigameManager
 {
-    public static bool GameRunning { private set; get; }
-
-    public Text Debug;
-
-    public GameTimer PongGameTimer;
-    public WaitTimeBeforeGame WaitBeforeGame;
-	public WaitTimeAfterGame WaitAfterGame;
     public GameObject AllGameObjectsContainer;
-    public BallController PongBallController;
+    public Text Debug;
     public DisplayGameResult Display;
-
-	private GameState result;
+    public BallController PongBallController;
+    public GameTimer PongGameTimer;
+    public WaitTimeAfterGame WaitAfterGame;
+    public WaitTimeBeforeGame WaitBeforeGame;
+    private GameState result;
+    public static bool GameRunning { private set; get; }
 
     public override void GamePause()
     {
@@ -27,7 +24,7 @@ public class PongGameMiniGameManager : MinigameManager
         GameRunning = false;
         PongGameTimer.ResetTimer();
         WaitBeforeGame.ResetWait();
-		WaitAfterGame.ResetWait();
+        WaitAfterGame.ResetWait();
         PongBallController.ResetBall();
     }
 
@@ -46,12 +43,30 @@ public class PongGameMiniGameManager : MinigameManager
         PongBallController.gameObject.SetActive(true);
     }
 
+    private void GameEnded(bool won)
+    {
+        if (GameRunning)
+        {
+            Display.PanelActivation(true, won);
+            GameRunning = false;
+            PongGameTimer.StopTimer();
+            AllGameObjectsContainer.gameObject.SetActive(false);
+            result = won ? GameState.Won : GameState.Lost;
+            WaitAfterGame.StartCountDown();
+        }
+    }
+
     private void Start()
     {
         WaitBeforeGame.Listener = WaitFinished;
-		PongGameTimer.Listener = () => GameEnded(true);
-		PongBallController.Listener = () => GameEnded(false);
-		WaitAfterGame.Listener = WaitAfterFinished;
+        PongGameTimer.Listener = () => GameEnded(true);
+        PongBallController.Listener = () => GameEnded(false);
+        WaitAfterGame.Listener = WaitAfterFinished;
+    }
+
+    private void WaitAfterFinished()
+    {
+        Listener(result);
     }
 
     private void WaitFinished()
@@ -61,21 +76,4 @@ public class PongGameMiniGameManager : MinigameManager
         PongGameTimer.StartTimer();
         PongBallController.StartBallMovement();
     }
-
-	private void WaitAfterFinished()
-	{
-		Listener(result);
-	}
-
-	private void GameEnded(bool won) {
-		if (GameRunning)
-		{
-			Display.PanelActivation(true, won);
-			GameRunning = false;
-			PongGameTimer.StopTimer();
-			AllGameObjectsContainer.gameObject.SetActive(false);
-			result = won ? GameState.Won : GameState.Lost;
-			WaitAfterGame.StartCountDown();
-		}
-	}
 }

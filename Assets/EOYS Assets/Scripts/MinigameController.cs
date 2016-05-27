@@ -7,12 +7,26 @@ public class MinigameController : MonoBehaviour
     public GameObject hudCanvas;
     public ParameterizedAnimator strengthBar;
     public float StrengthChangeTime;
-    private Dictionary<string, MinigameState> minigames;
     private string currentMinigame;
     private State currentState;
     private float currentStrength;
+    private Dictionary<string, MinigameState> minigames;
 
     private enum MinigameState { New, Active, Finished }
+
+    private enum State { Neutral, LosingStrength, GainingStrength }
+
+    public void EnteredDimension()
+    {
+        GameObject.Find(currentMinigame).GetComponentInChildren<UIOpenCloseAnimator>().Close();
+        GameObject.Find(currentMinigame).GetComponentInChildren<MinigameOpenCloseAnimator>().Open();
+        GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().GameStart();
+        GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().Listener = GameEnded;
+        minigames[currentMinigame] = MinigameState.Active;
+        currentState = State.GainingStrength;
+        hudCanvas.SetActive(true);
+        HUD.Open();
+    }
 
     public void EnteredTarget(string target)
     {
@@ -42,16 +56,24 @@ public class MinigameController : MonoBehaviour
         }
     }
 
-    public void EnteredDimension()
+    public void LeftTarget(string target)
     {
-        GameObject.Find(currentMinigame).GetComponentInChildren<UIOpenCloseAnimator>().Close();
-        GameObject.Find(currentMinigame).GetComponentInChildren<MinigameOpenCloseAnimator>().Open();
-        GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().GameStart();
-        GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().Listener = GameEnded;
-        minigames[currentMinigame] = MinigameState.Active;
-        currentState = State.GainingStrength;
-        hudCanvas.SetActive(true);
-        HUD.Open();
+        switch (minigames[target])
+        {
+            case MinigameState.Active:
+                currentState = State.LosingStrength;
+                GameObject.Find(currentMinigame).GetComponentInChildren<MinigameOpenCloseAnimator>().Close();
+                GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().GamePause();
+                break;
+
+            case MinigameState.New:
+                GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator>().Close();
+                break;
+
+            case MinigameState.Finished:
+                GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator2>().Close();
+                break;
+        }
     }
 
     private void GameEnded(MinigameManager.GameState state)
@@ -71,26 +93,6 @@ public class MinigameController : MonoBehaviour
         }
         HUD.Close();
         currentMinigame = null;
-    }
-
-    public void LeftTarget(string target)
-    {
-        switch (minigames[target])
-        {
-            case MinigameState.Active:
-                currentState = State.LosingStrength;
-                GameObject.Find(currentMinigame).GetComponentInChildren<MinigameOpenCloseAnimator>().Close();
-                GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().GamePause();
-                break;
-
-            case MinigameState.New:
-                GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator>().Close();
-                break;
-
-            case MinigameState.Finished:
-                GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator2>().Close();
-                break;
-        }
     }
 
     private void Start()
@@ -129,6 +131,4 @@ public class MinigameController : MonoBehaviour
             strengthBar.SetParameter(currentStrength);
         }
     }
-
-    private enum State { Neutral, LosingStrength, GainingStrength }
 }

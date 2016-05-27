@@ -3,33 +3,12 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
-    public GameTimer gameTimer;
     public Transform[] enemyPrefabs;
     public float enemyScale;
-    public float spawnTime;
+    public GameTimer gameTimer;
     public Transform miniGameTransform;
-
+    public float spawnTime;
     private float spawnTimer;
-
-    // Use this for initialization
-    private void Start()
-    {
-        spawnTimer = 0.0f;
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        if (!gameTimer.Paused && gameTimer.GameTimeLeft > 0)
-        {
-            spawnTimer += Time.deltaTime;
-            if (spawnTimer > spawnTime)
-            {
-                spawnTimer = 0.0f;
-                Spawn();
-            }
-        }
-    }
 
     public void Reset()
     {
@@ -54,5 +33,25 @@ public class SpawnEnemies : MonoBehaviour
         enemy.localRotation = Quaternion.identity;
         enemy.localScale = new Vector3(enemyScale, enemyScale, enemyScale);
         enemy.gameObject.SetActive(true);
+    }
+
+    // Use this for initialization
+    private void Start()
+    {
+        spawnTimer = 0.0f;
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+        if (!gameTimer.Paused && gameTimer.GameTimeLeft > 0)
+        {
+            spawnTimer += Time.deltaTime;
+            if (spawnTimer > spawnTime)
+            {
+                spawnTimer = 0.0f;
+                Spawn();
+            }
+        }
     }
 }

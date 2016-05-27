@@ -5,18 +5,17 @@ public class BossHealthBar : MonoBehaviour
 {
     public Image HealthBar1, HealthBar2, HealthBar3;
 
-    public delegate void OnStageDepleted(int stage);
-
     public OnStageDepleted Listener;
-    private int health;
+
     private readonly Color green = new Color32(46, 204, 113, 255);
-    private readonly Color yellow = new Color32(241, 196, 15, 255);
+
     private readonly Color red = new Color32(231, 76, 60, 255);
 
-    private void Start()
-    {
-        Reset();
-    }
+    private readonly Color yellow = new Color32(241, 196, 15, 255);
+
+    private int health;
+
+    public delegate void OnStageDepleted(int stage);
 
     public void Reset()
     {
@@ -52,6 +51,11 @@ public class BossHealthBar : MonoBehaviour
             health = 0;
         }
         UpdateHealthBars();
+    }
+
+    private void Start()
+    {
+        Reset();
     }
 
     private void UpdateHealthBars()

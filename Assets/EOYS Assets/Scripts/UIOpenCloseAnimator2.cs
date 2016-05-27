@@ -5,16 +5,24 @@ public class UIOpenCloseAnimator2 : MonoBehaviour
 {
     public float AnimationTime;
     public List<ParameterizedAnimator> animators;
-    private float currentTime;
-    private State currentState;
-
+    public OnCloseListener OnClose;
     public bool StartActive;
+    private State currentState;
+    private float currentTime;
 
     public delegate void OnCloseListener();
 
-    public OnCloseListener OnClose;
-
     private enum State { Open, Closed, Opening, Closing }
+
+    public void Close()
+    {
+        currentState = State.Closing;
+    }
+
+    public void Open()
+    {
+        currentState = State.Opening;
+    }
 
     private void Start()
     {
@@ -53,15 +61,5 @@ public class UIOpenCloseAnimator2 : MonoBehaviour
         {
             animator.SetParameter(currentTime / AnimationTime);
         }
-    }
-
-    public void Open()
-    {
-        currentState = State.Opening;
-    }
-
-    public void Close()
-    {
-        currentState = State.Closing;
     }
 }

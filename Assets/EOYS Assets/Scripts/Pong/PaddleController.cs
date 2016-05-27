@@ -5,6 +5,11 @@ public class PaddleController : MonoBehaviour
     public Transform Probe;
     public Transform Probe2;
 
+    public Vector3 GetNormal()
+    {
+        return Probe2.localPosition - Probe.localPosition;
+    }
+
     private void Start()
     {
     }
@@ -22,10 +27,5 @@ public class PaddleController : MonoBehaviour
         Quaternion rotation = Quaternion.identity;
         rotation.SetFromToRotation(Vector3.down, GetNormal());
         transform.localRotation = rotation;
-    }
-
-    public Vector3 GetNormal()
-    {
-        return Probe2.localPosition - Probe.localPosition;
     }
 }

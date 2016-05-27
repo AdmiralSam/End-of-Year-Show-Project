@@ -3,26 +3,9 @@
 public class Shoot : MonoBehaviour
 {
     public MoveBall Bullet;
-    public float Speed;
     public float Cooldown;
-
+    public float Speed;
     private float currentTime;
-
-    // Use this for initialization
-    private void Start()
-    {
-        currentTime = 0.0f;
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        currentTime -= Time.deltaTime;
-        if (currentTime < 0.0f)
-        {
-            currentTime = 0.0f;
-        }
-    }
 
     public void Attack()
     {
@@ -40,6 +23,22 @@ public class Shoot : MonoBehaviour
             bullet.transform.position = new Vector3(0.0f, 0.0f, 10.0f);
 
             currentTime = Cooldown;
+        }
+    }
+
+    // Use this for initialization
+    private void Start()
+    {
+        currentTime = 0.0f;
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+        currentTime -= Time.deltaTime;
+        if (currentTime < 0.0f)
+        {
+            currentTime = 0.0f;
         }
     }
 }
