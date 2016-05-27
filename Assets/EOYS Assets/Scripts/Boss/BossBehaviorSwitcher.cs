@@ -32,6 +32,7 @@ public class BossBehaviorSwitcher : MonoBehaviour
         simpleShootBehavior.Reset();
         coneShootBehavior.Reset();
         starCircleBehavior.Reset();
+        healthBar.Reset();
         transform.localPosition = new Vector3(0.0f, 0.1f, 0.0f);
     }
 

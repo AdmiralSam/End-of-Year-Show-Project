@@ -11,6 +11,7 @@ public class MinigameController : MonoBehaviour
     private State currentState;
     private float currentStrength;
     private Dictionary<string, MinigameState> minigames;
+    private Dictionary<string, bool> inView;
 
     private enum MinigameState { New, Active, Finished }
 
@@ -34,7 +35,7 @@ public class MinigameController : MonoBehaviour
         {
             if (minigames["Target 1"] != MinigameState.Finished || minigames["Target 2"] != MinigameState.Finished || minigames["Target 3"] != MinigameState.Finished)
             {
-                return;
+                //return;
             }
         }
         currentMinigame = target;
@@ -54,6 +55,7 @@ public class MinigameController : MonoBehaviour
                 GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator2>().Open();
                 break;
         }
+        inView[target] = true;
     }
 
     public void LeftTarget(string target)
@@ -74,6 +76,7 @@ public class MinigameController : MonoBehaviour
                 GameObject.Find(target).GetComponentInChildren<UIOpenCloseAnimator2>().Close();
                 break;
         }
+        inView[target] = false;
     }
 
     private void GameEnded(MinigameManager.GameState state)
@@ -83,13 +86,16 @@ public class MinigameController : MonoBehaviour
         GameObject.Find(currentMinigame).GetComponentInChildren<MinigameOpenCloseAnimator>().Close();
         GameObject.Find(currentMinigame).GetComponentInChildren<MinigameManager>().GameReset();
         minigames[currentMinigame] = state == MinigameManager.GameState.Won ? MinigameState.Finished : MinigameState.New;
-        if (state == MinigameManager.GameState.Won)
+        if (inView[currentMinigame])
         {
-            GameObject.Find(currentMinigame).GetComponentInChildren<UIOpenCloseAnimator2>().Open();
-        }
-        else
-        {
-            GameObject.Find(currentMinigame).GetComponentInChildren<UIOpenCloseAnimator>().Open();
+            if (state == MinigameManager.GameState.Won)
+            {
+                GameObject.Find(currentMinigame).GetComponentInChildren<UIOpenCloseAnimator2>().Open();
+            }
+            else
+            {
+                GameObject.Find(currentMinigame).GetComponentInChildren<UIOpenCloseAnimator>().Open();
+            }
         }
         HUD.Close();
     }
@@ -101,6 +107,11 @@ public class MinigameController : MonoBehaviour
         minigames["Target 2"] = MinigameState.New;
         minigames["Target 3"] = MinigameState.New;
         minigames["Target 4"] = MinigameState.New;
+        inView = new Dictionary<string, bool>();
+        inView["Target 1"] = false;
+        inView["Target 2"] = false;
+        inView["Target 3"] = false;
+        inView["Target 4"] = false;
         HUD.OnClose = () => hudCanvas.SetActive(false);
     }
 

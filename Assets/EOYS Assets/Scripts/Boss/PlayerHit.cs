@@ -8,7 +8,7 @@ public class PlayerHit : MonoBehaviour
     {
         if (other.name.Contains("Boss"))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             if (Listener != null)
             {
                 Listener();

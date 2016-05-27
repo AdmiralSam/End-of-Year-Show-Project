@@ -35,6 +35,8 @@ public class BossMinigameManager : MinigameManager
         afterTimer.ResetWait();
         time = 0.0f;
         currentState = State.Idle;
+        display.PanelActivation(false, false);
+        display.Reset();
     }
 
     public override void GameResume()
@@ -42,7 +44,6 @@ public class BossMinigameManager : MinigameManager
         switch (currentState)
         {
             case State.Playing:
-
                 player.Resume();
                 boss.Resume();
                 break;
@@ -52,10 +53,9 @@ public class BossMinigameManager : MinigameManager
     public override void GameStart()
     {
         currentState = State.Waiting;
-    }
-
-    private void Update()
-    {
+        beforeTimer.gameObject.SetActive(true);
+        beforeTimer.StartCountDown();
+        hit.gameObject.SetActive(true);
     }
 
     private void Start()
@@ -70,17 +70,24 @@ public class BossMinigameManager : MinigameManager
     {
         result = GameState.Won;
         afterTimer.StartCountDown();
+        display.PanelActivation(true, true);
+        boss.Pause();
+        player.Reset();
     }
 
     private void PlayerDied()
     {
         result = GameState.Lost;
         afterTimer.StartCountDown();
+        display.PanelActivation(true, false);
+        boss.Pause();
+        player.Reset();
     }
 
     private void StartPlaying()
     {
         currentState = State.Playing;
+        beforeTimer.gameObject.SetActive(false);
         player.Activate();
         boss.Activate();
     }
