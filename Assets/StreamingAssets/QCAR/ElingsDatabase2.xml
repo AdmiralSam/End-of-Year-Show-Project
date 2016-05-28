@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="mohit_trackerSmall3" size="5.000000 5.000000" />
+    <ImageTarget name="mohit_trackerSmall2" size="5.000000 5.000000" />
+    <ImageTarget name="mohit_trackerSmall1" size="5.000000 4.980315" />
     <ImageTarget name="floor2_tracker3" size="5.000000 5.000000" />
     <ImageTarget name="floor2_tracker2" size="5.000000 5.000000" />
     <ImageTarget name="floor2_tracker1" size="5.000000 5.000000" />
-    <ImageTarget name="mohit_tracker3" size="5.000000 5.000000" />
-    <ImageTarget name="mohit_tracker2" size="5.000000 5.000000" />
-    <ImageTarget name="mohit_tracker1" size="5.000000 5.000000" />
   </Tracking>
 </QCARConfig>
