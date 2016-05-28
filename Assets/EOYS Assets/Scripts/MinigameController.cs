@@ -107,11 +107,19 @@ public class MinigameController : MonoBehaviour
         minigames["Target 2"] = MinigameState.New;
         minigames["Target 3"] = MinigameState.New;
         minigames["Target 4"] = MinigameState.New;
+        for (int i = 5; i <= 10; i++)
+        {
+            minigames["Target " + i] = MinigameState.Finished;
+        }
         inView = new Dictionary<string, bool>();
         inView["Target 1"] = false;
         inView["Target 2"] = false;
         inView["Target 3"] = false;
         inView["Target 4"] = false;
+        for (int i = 5; i <= 10; i++)
+        {
+            inView["Target " + i] = false;
+        }
         HUD.OnClose = () => hudCanvas.SetActive(false);
     }
 
